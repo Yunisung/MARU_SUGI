@@ -12,7 +12,7 @@
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
 <script src=<c:url value="/js/jquery.min.js"/>></script>
 <script src=<c:url value="/js/bootstrap.js"/>></script>
-<script type="text/javascript" src="https://svcapi.mtouch.com/js/clientside.js?v=1"></script>
+<script type="text/javascript" src="https://devapi.bkwinners.kr/js/clientside.js?v=1"></script>
 
 </head>
 <body>
