@@ -34,7 +34,8 @@ public class SmsController {
 		SmsDAO smsDAO = new SmsDAO();
 		
 		SharedMap<String, Object> smsPay = smsDAO.getSmsPay(smsKey);
-		request.setAttribute("baseUrl", "https://devsugi.bkwinners.kr");
+		//request.setAttribute("baseUrl", "https://devsugi.bkwinners.kr");
+		request.setAttribute("baseUrl", "http://127.0.0.1");
 		if(smsPay != null){
 			if("N".equals(smsPay.getString("status"))){
 				smsPay.put("payerTel", smsDAO.getAESDec(smsPay.getString("payerTel")));

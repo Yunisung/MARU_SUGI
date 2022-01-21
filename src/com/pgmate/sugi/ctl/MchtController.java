@@ -34,7 +34,8 @@ import com.pgmate.sugi.util.SessionUtil;
 public class MchtController {
 	
 	private static Logger logger = LoggerFactory.getLogger( com.pgmate.sugi.ctl.MchtController.class );
-	private static final String BASE_URL = "https://devsugi.bkwinners.kr";
+	//private static final String BASE_URL = "https://devsugi.bkwinners.kr";
+	private static final String BASE_URL = "http://127.0.0.1";
 	
 	@RequestMapping(value="/mcht/order")
 	public ModelAndView order(HttpServletRequest request) {
