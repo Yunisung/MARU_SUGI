@@ -9,11 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MTouch</title>
+<title>Creditop</title>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src=<c:url value="/js/jquery.min.js"/>></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://api.pay-sharp.com/js/clientside.js?v=1"></script>
+<script type="text/javascript" src="https://api.pay-sharp.com/js/clientside.js"></script>
 <style>
 	body
 	input[type="number"]::-webkit-outer-spin-button,

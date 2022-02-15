@@ -1,0 +1,259 @@
+@charset "utf-8";
+/* CSS Document */
+ @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;400;500;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+/* **************************************** *
+ * RESET FILES
+ * **************************************** */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, time, figure, article, nav, header, footer, hgroup, video, audio, aside, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+body {
+	background: #f0f2fb;
+	height: 100vh;
+	width: 100%;
+	font-family:  'Montserrat', 'Noto Sans KR', sans-serif;
+}
+.form_wrap {
+	display:flex;
+	height: 100%;
+	flex-wrap: wrap;
+	align-items:center;
+	justify-content: center;
+	width: 100%;
+	overflow-x: hidden;
+}
+.login {
+	border-radius: 30px;
+	background: #fff;
+	width: 1200px;
+	height: 585px;
+	background:#d7daeb url(../img/login_bg.png) no-repeat left bottom;
+	position: relative;
+	box-shadow:  18px 18px 20px #eff1fb, -1px -1px 1px #ffffff;
+}
+.login h1, .order h1 {
+	position: absolute;
+	left: 50px;
+	top: 50px;
+}
+.login .form {
+	width: 600px;
+	height: 585px;
+	float:right;
+	background: #fff;
+	padding: 90px;
+	border-radius: 0 30px 30px 0;
+}
+.login h2 {
+	font-weight: bold;
+	padding-bottom: 30px;
+	font-size: 30px;
+}
+.login .form label {
+	font-size: 16px;
+	padding: 30px 0 10px 0
+}
+.input-login, .form-control {
+	width: 100%;
+	border:0;
+	outline:none;
+	line-height: 50px;
+	background-color: #f6f6f6 !important;
+	border-radius: 10px;
+	padding-left: 20px;
+	height: 50px;
+}
+.login .btn-danger {
+	height: 50px;
+	border-radius:10px;
+	margin-top: 30px;
+}
+.order {
+	border-radius: 30px;
+	width: 1200px;
+	height:670px;
+	position: relative;
+	box-shadow:  18px 18px 20px #eff1fb, -1px -1px 1px #ffffff;
+}
+.order .order_info {
+	width: 500px;
+	float: left;
+	padding: 50px;
+	background:url(../img/order_bg.png) no-repeat right bottom;
+	position: relative;
+	height: 670px;
+	border-radius: 30px 0 0 30px;
+}
+.order .order_form {
+	width: 700px;
+	height: 670px;
+	float:right;
+	background: #fff;
+	border-radius: 0 30px 30px 0;
+}
+.order_info .bank_info {
+	position: absolute;
+	bottom: 50px;
+}
+.info_box {
+	padding: 40px;
+	background: #fff;
+	border-radius: 20px;
+	margin-top: 15px;
+	width: 400px;
+}
+.info_box h3 {
+	font-size: 18px;
+	padding-bottom: 20px;
+}
+.logout_area {
+	border-bottom: 1px solid #eff1fa;
+	padding: 30px 50px;
+	text-align:right;
+}
+.order .form_area {
+	padding: 50px 50px 0 50px;
+}
+.order .form_area h2 {
+	padding: 0 0 30px 0;
+	text-align:center;
+}
+.order .form-horizontal .control-label {
+	padding:15px 0;
+	text-align:left;
+}
+.order .form-horizontal .form-group {
+	margin-left:0;
+	margin-right:0;
+}
+.order .col-sm-10 {
+	margin-right: 0;
+	padding-right: 0;
+}
+.form_wrap .btn-danger {
+	height: 50px;
+}
+.btn_pay {
+	text-align:right;
+}
+.btn_pay .btn-danger {
+	width: 20%;
+}
+button.logout {
+	background:url(../img/icon_logout.svg) no-repeat;
+	background-size:32px 32px;
+	padding-left: 32px;
+}
+/* focus 없애기 */
+
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus, .form-control:focus, .form-select:focus {
+	box-shadow: 0;
+	outline: 0 none;
+	border:0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+button.logout:focus, .btn.logout:active.focus {
+	background:url(../img/icon_logout.svg) no-repeat;
+	background-size:32px 32px;
+	box-shadow: 0;
+	outline: 0 none;
+	border:0;
+}
+ @media screen and (max-width: 1024px) {
+.login {
+ width:90%;
+ background-size: 300px 293px;
+ height: 500px;
+}
+.login .form {
+ width:60%;
+padding:60px 30px;
+height:500px;
+}
+.order {
+ width:90%;
+}
+.order .order_info {
+ width:40%;
+ padding: 30px;
+}
+.order .order_form {
+ width:60%;
+}
+ .order_info .bank_info {
+ bottom: 30px;
+ width: calc(100% - 60px);
+}
+.order .info_box {
+ padding: 20px;
+ width: 100%;
+}
+.order .form_area {
+ padding: 30px
+}
+}
+ @media screen and (max-width: 768px) {
+ body {
+background: #fff;
+}
+ .form_wrap {
+ display:inline-block;
+ height: auto;
+}
+ .login {
+ background:#fff;
+ height:auto;
+ width: 100%;
+ border-radius: 0;
+}
+.login .form {
+ width: 100%;
+ border-radius: 0;
+ padding: 120px 30px 30px 30px;
+}
+.login h1 {
+ position: relative;
+ left: 30px;
+}
+.login .form label {
+ padding: 10px 0 10px 0;
+}
+.order {
+ height: auto;
+ width: 100%;
+}
+.order .order_info {
+ width: 100%;
+ height: 400px;
+ border-radius: 0;
+}
+.logout_area {
+padding: 30px;
+}
+.order .order_form {
+ width:100%;
+ border-radius:0;
+ height: auto;
+}
+.order .form_area h2 {
+ font-size: 21px;
+}
+.btn_pay .btn-danger {
+ width:100%;
+}
+.order .col-sm-10 {
+ padding-left: 0;
+}
+}
+ @media screen and (max-width: 320px) {
+ .login h1 img, .order h1 img {
+width: calc(100% - 60px);
+}
+.order .form_area h2 {
+ font-size: 18px;
+}
+}

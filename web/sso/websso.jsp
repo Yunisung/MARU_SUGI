@@ -2,33 +2,21 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MTouch</title>
-<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
-<script src=<c:url value="/js/jquery.min.js"/>></script>
-<script src='<c:url value="/js/bootstrap.js"/>'></script>
-<script src='<c:url value="/js/bootbox.min.js"/>'></script>
-<style>
-	.input-login {
-		width: 100%;
-		border:0;
-		outline:none;
-		line-height: 30px;
-		border-bottom: 1px solid #828282;
-		padding-bottom: 5px;
-		margin-bottom: 10px;
-	}
-	.input-login:focus{
-		border-bottom: 1px solid #3787E8;
-	}
-</style>
-<script>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Creditop 수기결제</title>
+		<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
+		<link rel="stylesheet" href='<c:url value="/css/layout.css"/>'>
+		<script src='<c:url value="/js/jquery.min.js"/>'></script>
+		<script src='<c:url value="/js/bootstrap.js"/>'></script>
+		<script src='<c:url value="/js/bootbox.min.js"/>'></script>
+
+
+		<script>
 	$( document ).ready(function() {
 	   $('#tmnId').focus();
 	});		
@@ -71,13 +59,13 @@
 		//$('#form1').submit();
 		
 		$.ajax({
-	        url: "<c:url value='/login/in'/>",
+	        url: "/login/in/tmnid",
 	        type: "POST",
 	        data: $('#form1').serialize(),
 	        dataType: "json",
 	        success: function (data) {
-	            if(data.resultCd == "Y"){
-	            	location.replace("<c:url value='/mcht/order'/>");
+	            if(data.resultCd == "0000"){
+	            	location.replace('/mcht/sugi/order');
 	            }else{
 	            	bootbox.alert("로그인 정보가 올바르지 않거나 수기결제가 허용되지 않은 터미널입니다.");
 	            }
@@ -89,34 +77,34 @@
 
 	}
 </script>
-
-</head>
-<body>
-    <div class="container">
-      <div class="row">
-        <div class="text-center" style="margin: 50px 0 50px 0;">
-          <img src="/img/logo_top.png" style="margin-top: 5px; margin-left:10px; height: 25px;">
-        </div>
-        <div class="col-md-4 col-md-offset-4">
-          <form accept-charset="UTF-8" role="form" autocomplete="off" id="form1" onsubmit="return false;">
-          	   <input type="hidden" name="autoLogin" id="autoLogin"/>
-	           <!-- <div class="form-group">
+	</head>
+	<body>
+		<div class="form_wrap">
+			<div class="login">
+				<h1> <img src="/img/logo_top.png" /></h1>
+				<div class="form">
+					<h2>LOGIN</h2>
+					<form accept-charset="UTF-8" role="form" autocomplete="off" id="form1" onsubmit="return false;">
+						<input type="hidden" name="autoLogin" id="autoLogin"/>
+						<!-- <div class="form-group">
 	                <input name="mchtId" value='' id="mchtId" type="text" class="input-login" />
-	            </div>  --> 
-	            <div class="form-group">
-	                <input name="tmnId" value='' id="tmnId" type="text" class="input-login" placeholder="터미널아이디" tabindex="1"/>
-	            </div>
-	            <div class="form-group">
-	                <input name="serial" id="serial" value='' type="password" class="input-login" placeholder="일련번호" tabindex="2"/>
-	            </div>
-	            <div class="form-group">
-	            	<label for="rememberLogin">자동로그인</label>
-	            	<input type="checkbox" id="rememberLogin"/>
-	                <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Login" onclick="javascript:fn_login();"/>
-	            </div>
-	        </form>
-        </div>
-      </div>
-    </div>
-</body>
+	            </div>  -->
+						<div class="form-group">
+							<label>터미널아이디</label>
+							<input name="tmnId" value='' id="tmnId" type="text" class="input-login" placeholder="터미널아이디" tabindex="1"/>
+						</div>
+						<div class="form-group">
+							<label>일련번호</label>
+							<input name="serial" id="serial" value='' type="password" class="input-login" placeholder="일련번호" tabindex="2"/>
+						</div>
+						<div class="form-group"> 
+							<!-- 	            	<label for="rememberLogin">자동로그인</label> --> 
+							<!-- 	            	<input type="checkbox" id="rememberLogin"/> -->
+							<input type="submit" class="btn  btn-danger btn-login-submit btn-block btn-lg" value="Login" onclick="javascript:fn_login();"/>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
