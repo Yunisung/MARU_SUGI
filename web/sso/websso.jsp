@@ -59,13 +59,13 @@
 		//$('#form1').submit();
 		
 		$.ajax({
-	        url: "/login/in/tmnid",
+	        url: "<c:url value='/login/in'/>",
 	        type: "POST",
 	        data: $('#form1').serialize(),
 	        dataType: "json",
 	        success: function (data) {
-	            if(data.resultCd == "0000"){
-	            	location.replace('/mcht/sugi/order');
+	            if(data.resultCd == "Y"){
+	            	location.replace("<c:url value='/mcht/order'/>");
 	            }else{
 	            	bootbox.alert("로그인 정보가 올바르지 않거나 수기결제가 허용되지 않은 터미널입니다.");
 	            }
@@ -98,8 +98,8 @@
 							<input name="serial" id="serial" value='' type="password" class="input-login" placeholder="일련번호" tabindex="2"/>
 						</div>
 						<div class="form-group"> 
-							<!-- 	            	<label for="rememberLogin">자동로그인</label> --> 
-							<!-- 	            	<input type="checkbox" id="rememberLogin"/> -->
+			            	<label for="rememberLogin">자동로그인</label> 
+			            	<input type="checkbox" id="rememberLogin"/>
 							<input type="submit" class="btn  btn-danger btn-login-submit btn-block btn-lg" value="Login" onclick="javascript:fn_login();"/>
 						</div>
 					</form>
