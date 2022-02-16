@@ -14,7 +14,7 @@
   "tomcat": {
     "serverName": "MARU_SUGI",
     "port": 10009,
-    "host": "pgwas1",
+    "host": "pgwas2",
     "minThreads": 20,
     "maxThreads": 150,
     "ssl": {
