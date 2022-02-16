@@ -15,9 +15,10 @@
 		<script src='<c:url value="/js/jquery.min.js"/>'></script>
 		<script src='<c:url value="/js/bootstrap.js"/>'></script>
 		<script src='<c:url value="/js/bootbox.min.js"/>'></script>
-		<script type="text/javascript" src="https://api.bkwinners.kr/js/clientside.js"></script>
+		<script type="text/javascript" src="https://devapi.bkwinners.kr/js/clientside.js"></script>
 		<style>
-			input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+			input[type="number"]::-webkit-outer-spin-button, 
+			input[type="number"]::-webkit-inner-spin-button {
 				-webkit-appearance: none;
 				margin: 0;
 			}
@@ -26,15 +27,15 @@
 			$( document ).ready(function() {
 			   $('#name').focus();
 			  
-			//PYS : sms버튼 노출 안되게 변경   
-			//    var filter = "win16|win32|win64|mac|macintel";
+			
+			   var filter = "win16|win32|win64|mac|macintel";
 			   
-			//    if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
-			// 		$('#smsBtn').show();			    
+			   if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+					$('#smsBtn').show();			    
 			    
-			//    }else {
-			// 	   $('#smsBtn').hide();
-			//    }
+			   }else {
+				   $('#smsBtn').hide();
+			   }
 			});		
 			
 			$.fn.serializeObject = function(){
@@ -134,7 +135,7 @@
 			function fn_sendSms(smsKey){
 				var payerTel = $('#payerTel').val();
 				if(confirm(payerTel+"번호로 결제 URL을 전송하겠습니까?")){
-					var baseUrl = 'https://sugi.bkwinners.kr/sms/';
+					var baseUrl = 'https://devsugi.bkwinners.kr/sms/';
 					var url = baseUrl+smsKey+'/pay';
 					var content = "상점명: ${TMNNAME }%0D%0A상품명: "+$('#name').val()+"%0D%0A결제금액: "+numberWithCommas($.trim($('#amount').val()))+"원%0D%0A아래 URL을 누르시면, 결제창으로 연결됩니다.%0D%0A"+url;
 					if(navigator.userAgent.match(/Android/i) != null){
@@ -160,7 +161,7 @@
 			        products: products, // Array
 			        responseFunction: eventFnc, // Function
 			        //KJM : redirect url 가져오기 추가
-			        redirectUrl: $('#redirectUrl').val(),
+			        //redirectUrl: $('#redirectUrl').val(),
 			        payerName: $('#payerName').val(),
 			        payerEmail: $('#payerEmail').val(),
 			        payerTel: $('#payerTel').val(),
@@ -180,22 +181,23 @@
 				   }
 				}
 			function fn_logout(){
-                
-                $.ajax({
-                    url: '/login/out',
-                    type: 'GET',
-                    success: function (data) {
-                        if(data == "0000"){
-                            alert('접속 세션이 종료되었습니다. 다시 로그인하여 주시기 바랍니다.');
-                            location.replace('/login/form');
-                        }
+// PYS : 나중에 추가                
+//                 $.ajax({
+//                     url: '/login/out',
+//                     type: 'GET',
+//                     success: function (data) {
+//                         if(data == "0000"){
+//                             alert('접속 세션이 종료되었습니다. 다시 로그인하여 주시기 바랍니다.');
+//                             location.replace('/login/form');
+//                         }
                         
-                    },
-                    error: function (request,status,error) {
-                        bootbox.alert("잠시후 다시 시도해주세요.");
-                    }
-                });
-				//location.href = "<c:url value='/login/out'/>";
+//                     },
+//                     error: function (request,status,error) {
+//                         bootbox.alert("잠시후 다시 시도해주세요.");
+//                     }
+//                 });
+                
+				location.href = "<c:url value='/login/out'/>";
 			}
 			
 			function numberWithCommas(x) {
@@ -223,9 +225,9 @@
 				<input type="hidden" id="mchtName" name="mchtName" value="${CP_SESSION.mchtName }"/>
 				<input type="hidden" id="products" name="products"/>
 				<input type="hidden" id="baseUrl" name="baseUrl" value="${baseUrl }"/>
-				<!-- KJM : redirect url 추가 -->
+				<!-- KJM : redirect url 추가 
 				<input type="hidden" name="redirectUrl" id="redirectUrl" value="http://127.0.0.1:10035/redirect/Redirect.html" class="form-control">
-			
+				-->
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">구매 상품명</label>
 				<div class="col-sm-10">
@@ -275,7 +277,7 @@
 			<div class="row" style="margin-top:10px;">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-10">
-					취소입금계좌 : 우리은행 1005-902-772439 주식회사 광원
+					취소입금계좌 : 부산은행 123-123-12345 주식회사 부국위너스
 				</div>
 			</div>
 		</div>
