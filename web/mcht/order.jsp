@@ -276,7 +276,7 @@
 			<div class="row" style="margin-top:10px;">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-10">
-					취소입금계좌 : 부산은행 123-123-12345 주식회사 부국위너스
+					취소입금계좌 : 신한은행 100-035-741308 부국위너스(주)
 				</div>
 			</div>
 		</div>
