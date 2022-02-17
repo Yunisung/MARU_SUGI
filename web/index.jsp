@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<title>MTouch</title>
+<title>Creditop수기결제</title>
 <script>
 window.location.href = '/init';
 </script>
