@@ -14,7 +14,7 @@
   "tomcat": {
     "serverName": "MARU_SUGI",
     "port": 10009,
-    "host": "127.0.0.1",
+    "host": "10.100.200.10",
     "minThreads": 20,
     "maxThreads": 150,
     "ssl": {
