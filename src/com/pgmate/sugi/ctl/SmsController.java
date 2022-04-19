@@ -27,14 +27,14 @@ import com.pgmate.sugi.dao.SmsDAO;
 public class SmsController {
 	
 	private static Logger logger = LoggerFactory.getLogger( com.pgmate.sugi.ctl.SmsController.class );
-	private static final String BASE_URL = "https://devsugi.bkwinners.kr";
+	private static final String BASE_URL = "https://sugi.bkwinners.kr";
 	
 	@RequestMapping(value="/sms/{smsKey}/pay")
 	public ModelAndView smsPay(HttpServletRequest request ,@PathVariable("smsKey") String smsKey) {
 		SmsDAO smsDAO = new SmsDAO();
 		
 		SharedMap<String, Object> smsPay = smsDAO.getSmsPay(smsKey);
-		request.setAttribute("baseUrl", "https://devsugi.bkwinners.kr");
+		request.setAttribute("baseUrl", "https://sugi.bkwinners.kr");
 		if(smsPay != null){
 			if("N".equals(smsPay.getString("status"))){
 				smsPay.put("payerTel", smsDAO.getAESDec(smsPay.getString("payerTel")));
