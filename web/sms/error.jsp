@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MTouch</title>
+<title>CREDITOP</title>
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
 <script src='<c:url value="/js/jquery.min.js"/>'></script>
 <script src='<c:url value="/js/bootstrap.js"/>'></script>
