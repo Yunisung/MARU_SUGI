@@ -24,8 +24,6 @@
     <script src=<c:url value="/js/jquery.min.js"/>></script>
   <script src=<c:url value="/js/bootstrap.js"/>></script>
 
-
-
   <script type="text/javascript" src="https://api.bkwinners.kr/js/clientside.js"></script>
   <script>
    window.focus();
@@ -62,15 +60,13 @@
 
 	</form>
 
-
-
-
   <div class="c3-header">
     <span id="c3-btn-close" aria-label="Close"></span>
     <div class="c3-logo">
       <img id="c3-logo-img" src="/img/good_caddie.png">
     </div>
   </div>
+  
   <div class="c3-content">
     <div class="contant-wrapper">
       <div class="c3-product-tag c3-tag" id="c3-product-tag"></div>

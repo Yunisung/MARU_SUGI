@@ -4,7 +4,7 @@
     "poolName": "MARU_SUGI",
     "driver": "org.mariadb.jdbc.Driver",
     //"jdbcUrl": "jdbc:mariadb://192.168.0.156:3306/CP_MARU",
-    "jdbcUrl": "jdbc:mariadb://127.0.0.1:3306/CP_MARU",
+    "jdbcUrl": "jdbc:mariadb://127.0.0.1:3306/CP_MARU_TEST",
     "userName": "root",
     "passWord": "1234",
     "maxConnection": 20,
