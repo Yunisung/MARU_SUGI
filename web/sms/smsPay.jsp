@@ -18,7 +18,7 @@
 <html lang="en" style="height:100%;">
 <head>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-<%-- <link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'> --%>
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +30,7 @@
 
 
 
-  <script type="text/javascript" src="https://api.bkwinners.kr/js/clientside.js"></script>
+  <script type="text/javascript" src="https://devapi.bkwinners.kr/js/clientside.js"></script>
   <script>
    window.focus();
    </script>
@@ -72,7 +72,7 @@
 <!-- 		sms Test 중입니다 -->
 <!--     </div> -->
 <!--   </div> -->
-${mcht.payKey }/${mcht.smsKey }/${mcht.payerName }/${mcht.name }
+${mcht.payKey }/${mcht.smsKey }/${mcht.payerName }/${mcht.name }/${mcht.amount }
   
   <div class="c3-content">
     <div class="contant-wrapper">
