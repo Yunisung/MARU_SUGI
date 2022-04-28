@@ -39,7 +39,7 @@
 </head>
 <body class="c3-body">
 	<form id="form1">
-<%-- 		<input type="hidden" id="sms_trackId" name="trackId" value="${trackId }"/> --%>
+		<input type="hidden" id="sms_trackId" name="trackId" value="${trackId }"/>
 		<input type="hidden" id="sms_payKey" name="payKey" value="${mcht.payKey }"/>
 		<input type="hidden" id="sms_payInfo" name="payInfo" value="${payInfo }"/>
     	<input type="hidden" id="sms_tip" name="tip" value="${tip }"/>

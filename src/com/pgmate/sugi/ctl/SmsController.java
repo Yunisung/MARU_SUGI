@@ -12,6 +12,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -44,6 +47,8 @@ import com.pgmate.sugi.bean.Request;
 import com.pgmate.sugi.dao.SmsDAO;
 import com.pgmate.sugi.util.FirebaseUtil;
 import com.pgmate.sugi.util.UNIT;
+import com.pgmate.lib.util.db.DBFactory;
+import com.pgmate.lib.util.db.DBManager;
 import com.pgmate.lib.util.gson.GsonUtil;
 import com.pgmate.lib.util.lang.CommonUtil;
 import com.pgmate.lib.util.map.SharedMap;
@@ -129,7 +134,7 @@ public class SmsController {
 		
 		String payKey = request.getParameter("payKey");
 		String smsKey = request.getParameter("smsKey");
-//		String trackId = request.getParameter("trackId");
+		String trackId = getTrackId();
 		String amount = request.getParameter("amount");
 		String payerName = request.getParameter("payerName");
 		String payerEmail = request.getParameter("payerEmail");
@@ -146,7 +151,7 @@ public class SmsController {
 		DirectPaymentRequest DPrequest = new DirectPaymentRequest();
 		DPrequest.pay.put("payRoute", "ONTR");
 		DPrequest.pay.put("trxType", "ONTR");
-//		DPrequest.pay.put("trackId", trackId);
+		DPrequest.pay.put("trackId", trackId);
 		DPrequest.pay.put("amount", amount);
 		DPrequest.pay.put("payerName", payerName);
 		DPrequest.pay.put("payerEmail", payerEmail);
@@ -322,6 +327,39 @@ public class SmsController {
 	        
 	        return response;
 	}
+	
+	public String getTrackId() {
+		return "TX" + getFunction("FN_NEXTVAL2", "TRACKID");
+	}
+	
+	public String getFunction(String function, String value) {
+		String returnVal = "";
+		String query = "SELECT " + function + "(?) as val";
+
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, value);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				returnVal = rset.getString(1);
+			}
+			conn.commit();
+		} catch (Exception t) {
+			logger.debug("sql error : {}, query : {}", t.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, rset);
+		}
+		return returnVal;
+	}
+	
 }
 
 	
