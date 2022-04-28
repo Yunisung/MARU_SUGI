@@ -41,8 +41,6 @@
 </head>
 <body class="c3-body">
 	<form id="form1">
-	
-
 		<input type="hidden" id="sms_trackId" name="trackId" value="${trackId }"/>
 		<input type="hidden" id="sms_payKey" name="payKey" value="${mcht.payKey }"/>
 		<input type="hidden" id="sms_payInfo" name="payInfo" value="${payInfo }"/>
@@ -64,18 +62,18 @@
 	    <input type="hidden" id="sms_cardAuth" name="cardAuth"/>
 	    <input type="hidden" id="sms_authPw" name="authPw"/>
 	    <input type="hidden" id="sms_authDob" name="authDob"/>
-
 	</form>
 
 
-
-
-  <div class="c3-header">
-    <span id="c3-btn-close" aria-label="Close"></span>
-    <div class="c3-logo">
-      <img id="c3-logo-img" src="/img/logo.png">
-    </div>
-  </div>
+<!--   <div class="c3-header"> -->
+<!--     <span id="c3-btn-close" aria-label="Close"></span> -->
+<!--     <div class="c3-logo"> -->
+<!-- <!--       <img id="c3-logo-img" src="/img/logo.png"> --> -->
+<!-- 		sms Test 중입니다 -->
+<!--     </div> -->
+<!--   </div> -->
+${mcht.payKey }/${mcht.smsKey }/${mcht.payerName }/${mcht.name }
+  
   <div class="c3-content">
     <div class="contant-wrapper">
       <div class="c3-product-tag c3-tag" id="c3-product-tag"></div>
@@ -166,80 +164,73 @@
     </div>
   </div>
 
-  <div class="" id="c3-loading" style="display: block;">
-    <div class="spinner">
-      <div class="rect1"></div>
-      <div class="rect2"></div>
-      <div class="rect3"></div>
-      <div class="rect4"></div>
-      <div class="rect5"></div>
-    </div>
-    <div class="loading-tag">Loading...</div>  
-  </div>
+<!--   <div class="" id="c3-loading" style="display: block;"> -->
+<!--     <div class="spinner"> -->
+<!--       <div class="rect1"></div> -->
+<!--       <div class="rect2"></div> -->
+<!--       <div class="rect3"></div> -->
+<!--       <div class="rect4"></div> -->
+<!--       <div class="rect5"></div> -->
+<!--     </div> -->
+<!--     <div class="loading-tag">Loading...</div>   -->
+<!--   </div> -->
 
-  <div class="sweet-alert showSweetAlert" id="c3-alert" style="display: none;">
-    <!-- 실패 아이콘 -->
-    <div class="sa-icon sa-error animateErrorIcon" id="c3-alert-error" style="display: none;">
-      <span class="sa-x-mark">
-        <span class="sa-line sa-left"></span>
-        <span class="sa-line sa-right"></span>
-      </span>
-    </div>
-    <!-- 성공 아이콘 -->
-    <div class="sa-icon sa-success animate" id="c3-alert-success" style="display: none;">
-      <span class="sa-line sa-tip animateSuccessTip"></span>
-      <span class="sa-line sa-long animateSuccessLong"></span>
-      <div class="sa-placeholder"></div>
-      <div class="sa-fix"></div>
-    </div>
+<!--   <div class="sweet-alert showSweetAlert" id="c3-alert" style="display: none;"> -->
+<!--     실패 아이콘 -->
+<!--     <div class="sa-icon sa-error animateErrorIcon" id="c3-alert-error" style="display: none;"> -->
+<!--       <span class="sa-x-mark"> -->
+<!--         <span class="sa-line sa-left"></span> -->
+<!--         <span class="sa-line sa-right"></span> -->
+<!--       </span> -->
+<!--     </div> -->
+<!--     성공 아이콘 -->
+<!--     <div class="sa-icon sa-success animate" id="c3-alert-success" style="display: none;"> -->
+<!--       <span class="sa-line sa-tip animateSuccessTip"></span> -->
+<!--       <span class="sa-line sa-long animateSuccessLong"></span> -->
+<!--       <div class="sa-placeholder"></div> -->
+<!--       <div class="sa-fix"></div> -->
+<!--     </div> -->
     
-    <div id="c3-alert-success-wrapper" style="display: none;">
-        <h2>승인완료</h2>
-        <div class="sa-success-content">
-            <span class="sa-cell">승인 금액</span>
-            <span class="sa-cell" id="c3-alert-success-amount"></span>
-          </div>
-        <div class="sa-success-content">
-          <span class="sa-cell">거래번호</span>
-          <span class="sa-cell" id="c3-alert-success-trxId"></span>
-        </div>
-        <div class="sa-success-content">
-          <span class="sa-cell">거래일자</span>
-          <span class="sa-cell" id="c3-alert-success-trxDate"></span>
-        </div>
-        <div class="sa-success-content">
-          <span class="sa-cell">카드번호</span>
-          <span class="sa-cell" id="c3-alert-success-card"></span>
-        </div>
-        <div class="sa-success-content">
-          <span class="sa-cell">승인번호</span>
-          <span class="sa-cell" id="c3-alert-success-authCd"></span>
-        </div>
-        <div class="sa-success-content">
-          <span class="sa-cell">카드종류</span>
-          <span class="sa-cell" id="c3-alert-success-issuer"></span>
-        </div>
-    </div>
-    <div id="c3-alert-error-wrapper" style="display: none;">
-        <h2>승인실패</h2>
-        <p style="display: block;" id="c3-alert-error-msg"></p>
-    </div>
-    <div class="sa-button-container">
-      <div class="seprator"></div>
-      <div class="row" style="padding: 0 10%;">
-        <a href="javascript:void(0);" class="btn green" id="c3-btn-ok" tabindex="-1">확인</a>
-      </div>
-    </div>
-  </div>
+<!--     <div id="c3-alert-success-wrapper" style="display: none;"> -->
+<!--         <h2>승인완료</h2> -->
+<!--         <div class="sa-success-content"> -->
+<!--             <span class="sa-cell">승인 금액</span> -->
+<!--             <span class="sa-cell" id="c3-alert-success-amount"></span> -->
+<!--           </div> -->
+<!--         <div class="sa-success-content"> -->
+<!--           <span class="sa-cell">거래번호</span> -->
+<!--           <span class="sa-cell" id="c3-alert-success-trxId"></span> -->
+<!--         </div> -->
+<!--         <div class="sa-success-content"> -->
+<!--           <span class="sa-cell">거래일자</span> -->
+<!--           <span class="sa-cell" id="c3-alert-success-trxDate"></span> -->
+<!--         </div> -->
+<!--         <div class="sa-success-content"> -->
+<!--           <span class="sa-cell">카드번호</span> -->
+<!--           <span class="sa-cell" id="c3-alert-success-card"></span> -->
+<!--         </div> -->
+<!--         <div class="sa-success-content"> -->
+<!--           <span class="sa-cell">승인번호</span> -->
+<!--           <span class="sa-cell" id="c3-alert-success-authCd"></span> -->
+<!--         </div> -->
+<!--         <div class="sa-success-content"> -->
+<!--           <span class="sa-cell">카드종류</span> -->
+<!--           <span class="sa-cell" id="c3-alert-success-issuer"></span> -->
+<!--         </div> -->
+<!--     </div> -->
+<!--     <div id="c3-alert-error-wrapper" style="display: none;"> -->
+<!--         <h2>승인실패</h2> -->
+<!--         <p style="display: block;" id="c3-alert-error-msg"></p> -->
+<!--     </div> -->
+<!--     <div class="sa-button-container"> -->
+<!--       <div class="seprator"></div> -->
+<!--       <div class="row" style="padding: 0 10%;"> -->
+<!--         <a href="javascript:void(0);" class="btn green" id="c3-btn-ok" tabindex="-1">확인</a> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
 
 
-
-
-
-
-
-
-	
  	<!-- <div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 		<div style="display: table-cell; vertical-align: middle; text-align: center;">
 			<div style="display: inline-block; font-size: 5rem; padding: 5%;" class="bg-info">
