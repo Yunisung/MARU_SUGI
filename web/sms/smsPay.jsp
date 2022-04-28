@@ -74,7 +74,7 @@
       <div class="c3-product-tag c3-tag" id="c3-product-tag"></div>
       <div class="row c3-money-wrapper">
           <div class="c3-money-tag-wrapper">
-            <div class="c3-money-tag c3-tag">결제 금액</div>
+            <div class="c3-money-tag c3-tag">결제 금액 / 트랙 ${trackId }</div>
           </div>
           <span class="c3-money">₩<span id="c3-amount"></span></span>
       </div>
