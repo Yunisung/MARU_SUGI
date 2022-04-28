@@ -450,31 +450,31 @@ var MARU = (function(win, doc) {
         }, 10);
     }
 
-    util.documentReady(function() {
-       
-        console.log('search  ' + window.location.search);
-        if (!window.location.search) {
-            alert('올바르지 않은 접근입니다.');
-            return;
-        }
-        document.addEventListener('keydown', function(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-            }
-        }, true);
-        var token = window.location.search.split('=')[1];
-        getConfigByToken(token, function(res) {
-            MARUConfig = JSON.parse(res.target.responseText).widget;
-            console.log('TOKEN RESULT  ', MARUConfig);
-            setForm(MARUConfig);
-            util.loadImg('c3-logo-img', MARUConfig.widgetLogoUrl, MARUConfig.nick);
-            document.getElementById('card').focus();
-            /* loading hide */
-            setTimeout(function() {
-                fadeOutEffect('c3-loading');
-            },800);
-        }, function(err) {
-            console.log('TOKEN ERROR  ', err);
-        });
-    });
+//    util.documentReady(function() {
+//       
+//        console.log('search  ' + window.location.search);
+//        if (!window.location.search) {
+//            alert('올바르지 않은 접근입니다.');
+//            return;
+//        }
+//        document.addEventListener('keydown', function(event) {
+//            if (event.keyCode === 13) {
+//                event.preventDefault();
+//            }
+//        }, true);
+//        var token = window.location.search.split('=')[1];
+//        getConfigByToken(token, function(res) {
+//            MARUConfig = JSON.parse(res.target.responseText).widget;
+//            console.log('TOKEN RESULT  ', MARUConfig);
+//            setForm(MARUConfig);
+//            util.loadImg('c3-logo-img', MARUConfig.widgetLogoUrl, MARUConfig.nick);
+//            document.getElementById('card').focus();
+//            /* loading hide */
+//            setTimeout(function() {
+//                fadeOutEffect('c3-loading');
+//            },800);
+//        }, function(err) {
+//            console.log('TOKEN ERROR  ', err);
+//        });
+//    });
 })(window, document);
