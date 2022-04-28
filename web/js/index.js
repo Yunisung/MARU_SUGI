@@ -128,7 +128,9 @@ var MARU = (function(win, doc) {
         postAjax: function(url, data, success, fail) {
             // ActiveXObject를 이용한 방법은 사용할 수 없음. Flash 또는 IFrame을 이용한 전송방식을 구현 해야 함.
             var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-            xhr.open('POST', url);
+            console.log('url ', url);
+//            xhr.open('POST', url);
+            xhr.open('POST', "https://devapi.bkwinners.kr/api/pay");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState > 3 && xhr.status == 200) {
                     success(JSON.parse(xhr.responseText));
