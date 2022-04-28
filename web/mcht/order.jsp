@@ -33,8 +33,7 @@
 					$('#smsBtn').show();			    
 			    
 			   }else {
-// 				   $('#smsBtn').hide();
-				   $('#smsBtn').show();
+				   $('#smsBtn').hide();
 			   }
 			});		
 			
