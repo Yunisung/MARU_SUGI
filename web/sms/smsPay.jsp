@@ -235,7 +235,7 @@
 
 
 	
-	<!-- <div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+ 	<div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 		<div style="display: table-cell; vertical-align: middle; text-align: center;">
 			<div style="display: inline-block; font-size: 5rem; padding: 5%;" class="bg-info">
 				결제화면이 보이지 않으면<br> <strong>팝업해제 후 새로고침</strong> 하세요.
@@ -252,7 +252,7 @@
 	}
 	
 	function fn_pay(){	
-		KWON.pay({
+		MARU.pay({
 	        amount: $('#amount').val(),
 	        publicKey: $('#payKey').val(),
 	        products:JSON.parse($('#products').val()), // Array
@@ -262,13 +262,13 @@
 	        payerTel: $('#payerTel').val(),
 	        widgetLogoUrl: '',
 	        udf1: $('#smsKey').val(),
-	        //webhookUrl: 'http://pgwas2:10009/sms/smsPayWebHook',
-			webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
+	        webhookUrl: 'http://10.100.200.10:10009/sms/smsPayWebHook',
+			//webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
 	        redirectUrl: $('#baseUrl').val()+'/sms/smsPayComplete',
 	        mode: 'popup'
 		});
 	}
-	</script> -->
+	</script>
 		
 </body>
 
