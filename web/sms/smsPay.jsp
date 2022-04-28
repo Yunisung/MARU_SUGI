@@ -171,14 +171,14 @@
   </div>
 
   <div class="sweet-alert showSweetAlert" id="c3-alert" style="display: none;">
-    실패 아이콘
+<!--     실패 아이콘 -->
     <div class="sa-icon sa-error animateErrorIcon" id="c3-alert-error" style="display: none;">
       <span class="sa-x-mark">
         <span class="sa-line sa-left"></span>
         <span class="sa-line sa-right"></span>
       </span>
     </div>
-    성공 아이콘
+<!--     성공 아이콘 -->
     <div class="sa-icon sa-success animate" id="c3-alert-success" style="display: none;">
       <span class="sa-line sa-tip animateSuccessTip"></span>
       <span class="sa-line sa-long animateSuccessLong"></span>
