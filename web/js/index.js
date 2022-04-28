@@ -1,5 +1,6 @@
 console.log('IMPORT INDEX.JS FILE!');
 var MARU = (function(win, doc) {
+	console.log('이거 실행되냐?');
     var processing = false;
     var MARUConfig = {};
     var MARUResult = {};
@@ -324,6 +325,7 @@ var MARU = (function(win, doc) {
     document.getElementById("card").addEventListener("keypress", onCardKeyup); /* 종료 버튼 클릭 */
     
     function payStart(_this) {
+    	console.log('payStart시작');
         /* 1. 버튼 + 입력창 사용 불가 */
         if (processing) return;
         setProcessing(true);

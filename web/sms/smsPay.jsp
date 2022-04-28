@@ -154,7 +154,7 @@
       
       <div class="seprator"></div>
       <div class="row">
-          <a href="javascript:void(0);" class="btn green" id="c3-btn-pay" tabindex="-1">결제</a>
+          <a href="" onclick='fn_pay();' class="btn green" id="c3-btn-pay" tabindex="-1">결제</a>
       </div>
     </div>
   </div>
@@ -233,7 +233,8 @@
 <!-- 			</div> -->
 <!-- 		</div> -->
 <!-- 	</div> -->
-<!-- 	<script>
+
+	<script>
 // 		$(window).load(function() {
 // 			fn_pay();
 // 		});
@@ -242,24 +243,24 @@
 // 		console.log(data);
 // 	}
 	
-// 	function fn_pay(){	
-// 		MARU.pay({
-// 	        amount: $('#amount').val(),
-// 	        publicKey: $('#payKey').val(),
-// 	        products:JSON.parse($('#products').val()), // Array
-// 	        responseFunction: eventFnc, // Function
-// 	        payerName: $('#payerName').val(),
-// 	        payerEmail: $('#payerEmail').val(),
-// 	        payerTel: $('#payerTel').val(),
-// 	        widgetLogoUrl: '',
-// 	        udf1: $('#smsKey').val(),
-// // 	        webhookUrl: 'http://10.100.200.10:10009/sms/smsPayWebHook',
-// 			//webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
-// 	        redirectUrl: $('#baseUrl').val()+'/sms/smsPayComplete',
-// 	        mode: 'popup'
-// 		});
-// 	}
-	</script> -->
+	function fn_pay(){	
+		MARU.pay({
+	        amount: $('#amount').val(),
+	        publicKey: $('#payKey').val(),
+	        products:JSON.parse($('#products').val()), // Array
+	        responseFunction: eventFnc, // Function
+	        payerName: $('#payerName').val(),
+	        payerEmail: $('#payerEmail').val(),
+	        payerTel: $('#payerTel').val(),
+	        widgetLogoUrl: '',
+	        udf1: $('#smsKey').val(),
+// 	        webhookUrl: 'http://10.100.200.10:10009/sms/smsPayWebHook',
+			//webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
+	        redirectUrl: $('#baseUrl').val()+'/sms/smsPayComplete',
+	        mode: 'popup'
+		});
+	}
+	</script>
 		
 </body>
 
