@@ -1,6 +1,5 @@
 console.log('IMPORT INDEX.JS FILE!');
 var MARU = (function(win, doc) {
-	console.log('이거 실행되냐?');
     var processing = false;
     var MARUConfig = {};
     var MARUResult = {};
@@ -308,12 +307,6 @@ var MARU = (function(win, doc) {
         $("#sms_payerEmail").val(pay.payerEmail);
         $("#sms_payerTel").val(pay.payerTel);
 
-
-
-
-
-
-
         return {
             pay: pay
         };
@@ -332,7 +325,9 @@ var MARU = (function(win, doc) {
         var pay = getPay();
 
         if (validation(pay)) {
-            util.postAjax('/sms/pay', $("#form1").serialize(), function(res) {
+        	// kbr 수정
+//            util.postAjax('/sms/pay', $("#form1").serialize(), function(res) {
+            util.postAjax('/api/pay', $("#form1").serialize(), function(res) {
               MARUResult = res;
               if (res.result.resultCd == '0000') {
                 paySuccess(res.pay);
