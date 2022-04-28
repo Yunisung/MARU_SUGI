@@ -1,5 +1,5 @@
 console.log('IMPORT INDEX.JS FILE!');
-var KWON = (function(win, doc) {
+var MARU = (function(win, doc) {
     var processing = false;
     var MARUConfig = {};
     var MARUResult = {};
