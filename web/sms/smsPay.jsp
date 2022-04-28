@@ -25,10 +25,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href='<c:url value="/css/index.css"/>'>
   
-    <script src=<c:url value="/js/jquery.min.js"/>></script>
+  <script src=<c:url value="/js/jquery.min.js"/>></script>
   <script src=<c:url value="/js/bootstrap.js"/>></script>
-
-
 
   <script type="text/javascript" src="https://devapi.bkwinners.kr/js/clientside.js"></script>
   <script>
@@ -65,13 +63,13 @@
 	</form>
 
 
-<!--   <div class="c3-header"> -->
-<!--     <span id="c3-btn-close" aria-label="Close"></span> -->
-<!--     <div class="c3-logo"> -->
-<!-- <!--       <img id="c3-logo-img" src="/img/logo.png"> --> -->
-<!-- 		sms Test 중입니다 -->
-<!--     </div> -->
-<!--   </div> -->
+  <div class="c3-header">
+    <span id="c3-btn-close" aria-label="Close"></span>
+    <div class="c3-logo">
+<!--       <img id="c3-logo-img" src="/img/logo.png"> -->
+		sms Test 중입니다
+    </div>
+  </div>
 ${mcht.payKey }/${mcht.smsKey }/${mcht.payerName }/${mcht.name }/${mcht.amount }
   
   <div class="c3-content">
