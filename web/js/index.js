@@ -138,8 +138,8 @@ var MARU = (function(win, doc) {
             };
             xhr.setRequestHeader("Accept", "application/json");
             xhr.setRequestHeader("Accept-Language", "ko_KR");
-            xhr.setRequestHeader("Authorization", MARUConfig.publicKey);
-            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.send(data);
             return xhr;
         },
@@ -175,19 +175,21 @@ var MARU = (function(win, doc) {
     function getConfigByToken(token, successFnc, errorFnc) {
         util.getAjax('/api/widget/' + token, successFnc, errorFnc);
     }
-
-    function setForm(config) {
-        document.getElementById('c3-amount').innerText = util.numberWithCommas(config.amount);
-        document.getElementById('payerName').value = config.payerName;
-        document.getElementById('payerEmail').value = config.payerEmail;
-        document.getElementById('payerTel').value = config.payerTel;
+    
+    function setForm() {
+        document.getElementById('c3-amount').innerText = util.numberWithCommas($("#sms_amount").val());
+        document.getElementById('payerName').value = $("#sms_payerName").val();
+        document.getElementById('payerEmail').value = $("#sms_payerEmail").val();
+        document.getElementById('payerTel').value = $("#sms_payerTel").val();
         /* semiAuth 입력 항목 표시 */
-        if (config.semiAuth == 'Y') {
+        if ($("#sms_semiAuth").val() == 'Y') {
             document.getElementsByClassName('semi-auth')[0].style.display = 'block';
         }
 
-        if (config.products.length > 0) {
-            document.getElementById('c3-product-tag').innerText = config.products[0].name + (config.products.length > 1 ? (' 외 ' + config.products.length + '개') : '');
+        if ($("#sms_payInfo").val().length > 0) {
+            document.getElementById('c3-product-tag').innerText = 
+            "캐디: " +$("#sms_mchtName").val() +"\n장소: "+$("#sms_payInfo").val()
+            +"\n 팁: "+$("#sms_tip").val()+"원" +" 라운딩: "+$("#sms_roundingAmount").val()+"원";
         }
 
         /* 연도 옵션 추가 */
@@ -199,9 +201,9 @@ var MARU = (function(win, doc) {
             document.getElementById('expiry-year').appendChild(opt);
         }
         /* 할부 옵션 추가 */
-        for (i = 0; i <= config.apiMaxInstall; i++) {
+        for (i = 0; i <= $("#sms_apiMaxInstall").val(); i++) {
             if (i == 1) continue;
-            if (i > 1 && config.amount < 50000) break;
+            if (i > 1 && $("#sms_amount").val() < 50000) break;
             
             var opt = document.createElement('option');
             opt.value = i;
@@ -218,7 +220,7 @@ var MARU = (function(win, doc) {
       document.getElementById(id).className = cn;
     }
 
-    function validation(pay) {
+    function validation() {
         var card = document.getElementById('card').value.replace(/\s/g, '');
         if (card.length < 15) {
             alert('카드번호가 올바르지 않습니다.');
@@ -226,7 +228,7 @@ var MARU = (function(win, doc) {
             return false;
         } else inputError('card', false);
 
-        if (MARUConfig.semiAuth == 'Y') {
+        if ($("#sms_semiAuth").val() == 'Y') {
             var authPw = document.getElementById('authPw').value;
             if (!authPw || !/^([0-9]{2})$/.test(authPw)) {
                 alert('비밀번호 앞 2자리가 올바르지 않습니다.');
@@ -234,8 +236,8 @@ var MARU = (function(win, doc) {
                 return false;
             } else  inputError('authPw', false);
             var authDob = document.getElementById('authDob').value;
-            if (!authDob || (!/^([0-9]{6})$/.test(authDob) && !/^([0-9]{10})$/.test(authDob))) {
-                alert('생년월일이나 사업자번호가 올바르지 않습니다.');
+            if (!authDob || !/^([0-9]{6})$/.test(authDob)) {
+                alert('생년월일이 올바르지 않습니다.');
                 inputError('authDob', true);
                 return false;
             } else inputError('authDob', false);
@@ -271,7 +273,7 @@ var MARU = (function(win, doc) {
         var pay = {};
         pay.trxType = "ONTR";
         pay.tmnId = MARUConfig.tmnId;
-        pay.trackId = "TRACK-" + new Date().getTime();
+        pay.trackId = MARUConfig.sms_trackId;
         pay.amount = MARUConfig.amount;
         pay.payerName = document.getElementById('payerName').value;
         pay.payerEmail = document.getElementById('payerEmail').value;
@@ -289,10 +291,22 @@ var MARU = (function(win, doc) {
         pay.card.installment = document.getElementById('installment').value;
 
         pay.metadata = {};
-        pay.metadata.cardAuth = MARUConfig.semiAuth == 'Y' ? "true" : "false";
+        pay.metadata.cardAuth = $("#sms_semiAuth").val() == 'Y' ? "true" : "false";
         pay.metadata.authPw = document.getElementById('authPw').value;
         pay.metadata.authDob = document.getElementById('authDob').value;
         //console.log('>>>>>>>>>>>>>>>>>>> ', pay);
+
+        $("#sms_cardNumber").val(pay.card.number);
+        $("#sms_expiry").val(pay.card.expiry);
+        $("#sms_installment").val(pay.card.installment);
+        $("#sms_cardAuth").val(pay.card.cardAuth);
+        $("#sms_authPw").val(pay.card.authPw);
+        $("#sms_authDob").val(pay.card.authDob);
+
+        $("#sms_payerName").val(pay.payerName);
+        $("#sms_payerEmail").val(pay.payerEmail);
+        $("#sms_payerTel").val(pay.payerTel);
+
         return {
             pay: pay
         };
@@ -304,13 +318,16 @@ var MARU = (function(win, doc) {
     document.getElementById("card").addEventListener("keypress", onCardKeyup); /* 종료 버튼 클릭 */
     
     function payStart(_this) {
+    	console.log('payStart시작');
         /* 1. 버튼 + 입력창 사용 불가 */
         if (processing) return;
         setProcessing(true);
         var pay = getPay();
 
         if (validation(pay)) {
-            util.postAjax('/api/pay', JSON.stringify(pay), function(res) {
+        	// kbr 수정
+//            util.postAjax('/sms/pay', $("#form1").serialize(), function(res) {
+            util.postAjax('/api/pay', $("#form1").serialize(), function(res) {
               MARUResult = res;
               if (res.result.resultCd == '0000') {
                 paySuccess(res.pay);
@@ -372,7 +389,7 @@ var MARU = (function(win, doc) {
       }
     }
     function okBtnExit() {
-        close(false);
+        close(true);
     }
 
     function close(isSet) {
@@ -381,7 +398,7 @@ var MARU = (function(win, doc) {
             type: 'PAY_CLOSE'
         };
         if(isSet) obj.data = MARUResult;
-          util.sendMessageToParent(obj);
+        //   util.sendMessageToParent(obj);
           setTimeout(function() {
             if(self.opener) {
                 self.opener = self;
@@ -417,7 +434,7 @@ var MARU = (function(win, doc) {
           }, 200);
         }
     }
-
+``
     function fadeInEffect(id) {
         var fadeTarget = document.getElementById(id);
         document.getElementById(id).style.display = 'block';
@@ -450,31 +467,53 @@ var MARU = (function(win, doc) {
         }, 10);
     }
 
-//    util.documentReady(function() {
-//       
-//        console.log('search  ' + window.location.search);
-//        if (!window.location.search) {
-//            alert('올바르지 않은 접근입니다.');
-//            return;
-//        }
-//        document.addEventListener('keydown', function(event) {
-//            if (event.keyCode === 13) {
-//                event.preventDefault();
-//            }
-//        }, true);
-//        var token = window.location.search.split('=')[1];
-//        getConfigByToken(token, function(res) {
-//            MARUConfig = JSON.parse(res.target.responseText).widget;
-//            console.log('TOKEN RESULT  ', MARUConfig);
-//            setForm(MARUConfig);
-//            util.loadImg('c3-logo-img', MARUConfig.widgetLogoUrl, MARUConfig.nick);
-//            document.getElementById('card').focus();
-//            /* loading hide */
-//            setTimeout(function() {
-//                fadeOutEffect('c3-loading');
-//            },800);
-//        }, function(err) {
-//            console.log('TOKEN ERROR  ', err);
-//        });
-//    });
+    util.documentReady(function() {
+       
+        // console.log('search  ' + window.location.search);
+        // if (!window.location.search) {
+        //     alert('올바르지 않은 접근입니다.');
+        //     return;
+        // }
+        document.addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+            }
+        }, true);
+
+
+        //서버에서 받은값 설정.
+        MARUConfig.trackId = $("#sms_trackId").val();
+        MARUConfig.publicKey = $("#sms_payKey").val();
+        MARUConfig.semiAuth = $("#sms_semiAuth").val();
+        MARUConfig.tmnId = $("#sms_tmnId").val();
+        MARUConfig.amount = $("#sms_amount").val();
+        MARUConfig.redirectUrl = $("#sms_redirectUrl").val();
+        MARUConfig.webhookUrl = $("#sms_webhookUrl").val();
+        MARUConfig.udf1 = $("#sms_udf1").val();
+        MARUConfig.udf2 = $("#sms_udf2").val();
+        MARUConfig.products = $("#sms_products").val();
+
+        
+        setForm();
+        document.getElementById('card').focus();
+        setTimeout(function() {
+            fadeOutEffect('c3-loading');
+        },800);
+
+        
+        // var token = window.location.search.split('=')[1];
+        // getConfigByToken(token, function(res) {
+        //     MARUConfig = JSON.parse(res.target.responseText).widget;
+        //     //console.log('TOKEN RESULT  ', MARUConfig);
+        //     setForm(MARUConfig);
+        //     util.loadImg('c3-logo-img', MARUConfig.widgetLogoUrl, MARUConfig.nick);
+        //     document.getElementById('card').focus();
+        //     /* loading hide */
+        //     setTimeout(function() {
+        //         fadeOutEffect('c3-loading');
+        //     },800);
+        // }, function(err) {
+        //     console.log('TOKEN ERROR  ', err);
+        // });
+    });
 })(window, document);
