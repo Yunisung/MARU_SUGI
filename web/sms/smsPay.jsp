@@ -243,24 +243,24 @@
 // 		console.log(data);
 // 	}
 	
-// 	function fn_pay(){	
-// 		console.log('fn_pay() 실행');
-// 		MARU.pay({
-// 	        amount: $('#amount').val(),
-// 	        publicKey: $('#payKey').val(),
-// 	        products:JSON.parse($('#products').val()), // Array
-// 	        responseFunction: eventFnc, // Function
-// 	        payerName: $('#payerName').val(),
-// 	        payerEmail: $('#payerEmail').val(),
-// 	        payerTel: $('#payerTel').val(),
-// 	        widgetLogoUrl: '',
-// 	        udf1: $('#smsKey').val(),
-// // 	        webhookUrl: 'http://10.100.200.10:10009/sms/smsPayWebHook',
-// 			//webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
-// 	        redirectUrl: $('#baseUrl').val()+'/sms/smsPayComplete',
-// 	        mode: 'popup'
-// 		});
-// 	}
+	function fn_pay(){	
+		console.log('fn_pay() 실행');
+		MARU.pay({
+	        amount: $('#amount').val(),
+	        publicKey: $('#payKey').val(),
+	        products:JSON.parse($('#products').val()), // Array
+	        responseFunction: eventFnc, // Function
+	        payerName: $('#payerName').val(),
+	        payerEmail: $('#payerEmail').val(),
+	        payerTel: $('#payerTel').val(),
+	        widgetLogoUrl: '',
+	        udf1: $('#smsKey').val(),
+ 	    	webhookUrl: 'http://10.100.200.10:10009/sms/smsPayWebHook',
+// 			webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
+	        redirectUrl: $('#baseUrl').val()+'/sms/smsPayComplete',
+	        mode: 'popup'
+		});
+	}
 	</script>
 		
 </body>

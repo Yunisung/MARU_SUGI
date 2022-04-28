@@ -129,8 +129,7 @@ var MARU = (function(win, doc) {
             // ActiveXObject를 이용한 방법은 사용할 수 없음. Flash 또는 IFrame을 이용한 전송방식을 구현 해야 함.
             var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
             console.log('url ', url);
-//            xhr.open('POST', url);
-            xhr.open('POST', "https://devapi.bkwinners.kr/api/pay");
+            xhr.open('POST', url);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState > 3 && xhr.status == 200) {
                     success(JSON.parse(xhr.responseText));
@@ -328,8 +327,8 @@ var MARU = (function(win, doc) {
 
         if (validation(pay)) {
         	// kbr 수정
-//            util.postAjax('/sms/pay', $("#form1").serialize(), function(res) {
-            util.postAjax('/api/pay', $("#form1").serialize(), function(res) {
+            util.postAjax('/sms/pay', $("#form1").serialize(), function(res) {
+//            util.postAjax('/api/pay', $("#form1").serialize(), function(res) {
               MARUResult = res;
               if (res.result.resultCd == '0000') {
                 paySuccess(res.pay);
