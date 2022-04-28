@@ -17,10 +17,16 @@
 <!DOCTYPE html>
 <html lang="en" style="height:100%;">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href='<c:url value="/css/index.css"/>'>
+  <link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
+  
+<!--   <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+<%--   <link rel="stylesheet" href='<c:url value="/css/index.css"/>'> --%>
+  
     <script src=<c:url value="/js/jquery.min.js"/>></script>
   <script src=<c:url value="/js/bootstrap.js"/>></script>
 
@@ -31,7 +37,7 @@
    window.focus();
    </script>
 
-  <title>Creditop</title>
+  <title>CREDITOP</title>
 </head>
 
 </head>
