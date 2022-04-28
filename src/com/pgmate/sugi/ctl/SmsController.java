@@ -129,7 +129,7 @@ public class SmsController {
 		
 		String payKey = request.getParameter("payKey");
 		String smsKey = request.getParameter("smsKey");
-		String trackId = request.getParameter("trackId");
+//		String trackId = request.getParameter("trackId");
 		String amount = request.getParameter("amount");
 		String payerName = request.getParameter("payerName");
 		String payerEmail = request.getParameter("payerEmail");
@@ -146,7 +146,7 @@ public class SmsController {
 		DirectPaymentRequest DPrequest = new DirectPaymentRequest();
 		DPrequest.pay.put("payRoute", "ONTR");
 		DPrequest.pay.put("trxType", "ONTR");
-		DPrequest.pay.put("trackId", trackId);
+//		DPrequest.pay.put("trackId", trackId);
 		DPrequest.pay.put("amount", amount);
 		DPrequest.pay.put("payerName", payerName);
 		DPrequest.pay.put("payerEmail", payerEmail);
