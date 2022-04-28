@@ -265,8 +265,7 @@
 				<div class="col-sm-2"></div>
 				<div class="col-sm-10">
 					<button class="btn btn-sm btn-primary" onclick="javascript:fn_pay();">결제</button>&nbsp;
-<!-- 					<button class="btn btn-sm btn-info pull-right" id="smsBtn" style="display:none;" onclick="javascript:fn_sms();">SMS</button> -->
-					<button class="btn btn-sm btn-info pull-right" id="smsBtn" onclick="javascript:fn_sms();">SMS</button>
+					<button class="btn btn-sm btn-info pull-right" id="smsBtn" style="display:none;" onclick="javascript:fn_sms();">SMS</button>
 				</div>
 			</div>
 			<div class="row" style="margin-top:10px;">

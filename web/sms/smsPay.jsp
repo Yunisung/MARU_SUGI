@@ -18,7 +18,7 @@
 <html lang="en" style="height:100%;">
 <head>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
+<%-- <link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'> --%>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,12 +66,9 @@
   <div class="c3-header">
     <span id="c3-btn-close" aria-label="Close"></span>
     <div class="c3-logo">
-<!--       <img id="c3-logo-img" src="/img/logo.png"> -->
-		sms Test 중입니다
+      <img id="c3-logo-img" src="/img/logo.png">
     </div>
   </div>
-${mcht.payKey }/${mcht.smsKey }/${mcht.payerName }/${mcht.name }/${mcht.amount }
-  
   <div class="c3-content">
     <div class="contant-wrapper">
       <div class="c3-product-tag c3-tag" id="c3-product-tag"></div>
@@ -229,40 +226,40 @@ ${mcht.payKey }/${mcht.smsKey }/${mcht.payerName }/${mcht.name }/${mcht.amount }
   </div>
 
 
- 	 <div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-		<div style="display: table-cell; vertical-align: middle; text-align: center;">
-			<div style="display: inline-block; font-size: 5rem; padding: 5%;" class="bg-info">
-				결제화면이 보이지 않으면<br> <strong>팝업해제 후 새로고침</strong> 하세요.
-			</div>
-		</div>
-	</div>
-	<script>
-		$(window).load(function() {
-			fn_pay();
-		});
+<!--  	 <div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"> -->
+<!-- 		<div style="display: table-cell; vertical-align: middle; text-align: center;"> -->
+<!-- 			<div style="display: inline-block; font-size: 5rem; padding: 5%;" class="bg-info"> -->
+<!-- 				결제화면이 보이지 않으면<br> <strong>팝업해제 후 새로고침</strong> 하세요. -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- 	<script>
+// 		$(window).load(function() {
+// 			fn_pay();
+// 		});
 		
-	function eventFnc(data) {
-		console.log(data);
-	}
+// 	function eventFnc(data) {
+// 		console.log(data);
+// 	}
 	
-	function fn_pay(){	
-		MARU.pay({
-	        amount: $('#amount').val(),
-	        publicKey: $('#payKey').val(),
-	        products:JSON.parse($('#products').val()), // Array
-	        responseFunction: eventFnc, // Function
-	        payerName: $('#payerName').val(),
-	        payerEmail: $('#payerEmail').val(),
-	        payerTel: $('#payerTel').val(),
-	        widgetLogoUrl: '',
-	        udf1: $('#smsKey').val(),
-// 	        webhookUrl: 'http://10.100.200.10:10009/sms/smsPayWebHook',
-			//webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
-	        redirectUrl: $('#baseUrl').val()+'/sms/smsPayComplete',
-	        mode: 'popup'
-		});
-	}
-	</script> 
+// 	function fn_pay(){	
+// 		MARU.pay({
+// 	        amount: $('#amount').val(),
+// 	        publicKey: $('#payKey').val(),
+// 	        products:JSON.parse($('#products').val()), // Array
+// 	        responseFunction: eventFnc, // Function
+// 	        payerName: $('#payerName').val(),
+// 	        payerEmail: $('#payerEmail').val(),
+// 	        payerTel: $('#payerTel').val(),
+// 	        widgetLogoUrl: '',
+// 	        udf1: $('#smsKey').val(),
+// // 	        webhookUrl: 'http://10.100.200.10:10009/sms/smsPayWebHook',
+// 			//webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
+// 	        redirectUrl: $('#baseUrl').val()+'/sms/smsPayComplete',
+// 	        mode: 'popup'
+// 		});
+// 	}
+	</script> -->
 		
 </body>
 
