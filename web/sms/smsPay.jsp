@@ -68,7 +68,7 @@
   <div class="c3-header">
     <span id="c3-btn-close" aria-label="Close"></span>
     <div class="c3-logo">
-      <img id="c3-logo-img" src="/img/good_caddie.png">
+      <img id="c3-logo-img" src="/img/logo.png">
     </div>
   </div>
   <div class="c3-content">
