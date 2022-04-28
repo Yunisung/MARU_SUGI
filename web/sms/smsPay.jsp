@@ -17,15 +17,13 @@
 <!DOCTYPE html>
 <html lang="en" style="height:100%;">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<%-- <link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'> --%>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
-  
-<!--   <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
-<%--   <link rel="stylesheet" href='<c:url value="/css/index.css"/>'> --%>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href='<c:url value="/css/index.css"/>'>
   
     <script src=<c:url value="/js/jquery.min.js"/>></script>
   <script src=<c:url value="/js/bootstrap.js"/>></script>
@@ -43,12 +41,13 @@
 </head>
 <body class="c3-body">
 	<form id="form1">
+	
 
 		<input type="hidden" id="sms_trackId" name="trackId" value="${trackId }"/>
 		<input type="hidden" id="sms_payKey" name="payKey" value="${mcht.payKey }"/>
 		<input type="hidden" id="sms_payInfo" name="payInfo" value="${payInfo }"/>
-    <input type="hidden" id="sms_tip" name="tip" value="${tip }"/>
-    <input type="hidden" id="sms_roundingAmount" name="roundingAmount" value="${roundingAmount }"/>
+    	<input type="hidden" id="sms_tip" name="tip" value="${tip }"/>
+    	<input type="hidden" id="sms_roundingAmount" name="roundingAmount" value="${roundingAmount }"/>
 		<input type="hidden" id="sms_mchtName" name="mchtName" value="${mcht.name }"/>
 		<input type="hidden" id="sms_products" name="products" value="${mcht.products }"/>
 		<input type="hidden" id="sms_amount" name="amount" value="${mcht.amount }"/>
@@ -57,14 +56,14 @@
 		<input type="hidden" id="sms_payerTel" name="payerTel" value="${mcht.payerTel }"/>
 		<input type="hidden" id="sms_smsKey" name="smsKey" value="${mcht.smsKey }"/>
 		<input type="hidden" id="sms_apiMaxInstall" name="apiMaxInstall" value="${apiMaxInstall }"/>
-    <input type="hidden" id="sms_semiAuth" name="semiAuth" value="${semiAuth }"/>
-    <input type="hidden" id="sms_installment" name="installment"/>
-    <input type="hidden" id="sms_trxId" name="trxId"/>
-    <input type="hidden" id="sms_cardNumber" name="cardNumber"/>
-    <input type="hidden" id="sms_expiry" name="expiry"/>
-    <input type="hidden" id="sms_cardAuth" name="cardAuth"/>
-    <input type="hidden" id="sms_authPw" name="authPw"/>
-    <input type="hidden" id="sms_authDob" name="authDob"/>
+    	<input type="hidden" id="sms_semiAuth" name="semiAuth" value="${semiAuth }"/>
+    	<input type="hidden" id="sms_installment" name="installment"/>
+	    <input type="hidden" id="sms_trxId" name="trxId"/>
+	    <input type="hidden" id="sms_cardNumber" name="cardNumber"/>
+	    <input type="hidden" id="sms_expiry" name="expiry"/>
+	    <input type="hidden" id="sms_cardAuth" name="cardAuth"/>
+	    <input type="hidden" id="sms_authPw" name="authPw"/>
+	    <input type="hidden" id="sms_authDob" name="authDob"/>
 
 	</form>
 
@@ -241,7 +240,7 @@
 
 
 	
- 	<div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+ 	<!-- <div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 		<div style="display: table-cell; vertical-align: middle; text-align: center;">
 			<div style="display: inline-block; font-size: 5rem; padding: 5%;" class="bg-info">
 				결제화면이 보이지 않으면<br> <strong>팝업해제 후 새로고침</strong> 하세요.
@@ -274,7 +273,7 @@
 	        mode: 'popup'
 		});
 	}
-	</script>
+	</script> -->
 		
 </body>
 
