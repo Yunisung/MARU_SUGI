@@ -154,7 +154,7 @@
       
       <div class="seprator"></div>
       <div class="row">
-          <a href="MARU.payStart();" class="btn green" id="c3-btn-pay" tabindex="-1">결제</a>
+          <a href="javascript:void(0);" class="btn green" id="c3-btn-pay" tabindex="-1">결제</a>
       </div>
     </div>
   </div>
