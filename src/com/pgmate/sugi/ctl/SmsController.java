@@ -329,7 +329,7 @@ public class SmsController {
 	}
 	
 	public String getTrackId() {
-		return "TX" + getFunction("FN_NEXTVAL2", "TRACKID");
+		return "SMS_" + getFunction("FN_NEXTVAL2", "TRACKID");
 	}
 	
 	public String getFunction(String function, String value) {
