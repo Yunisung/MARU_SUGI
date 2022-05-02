@@ -17,32 +17,33 @@
 <!DOCTYPE html>
 <html lang="en" style="height:100%;">
 <head>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<%-- <link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'> --%>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href='<c:url value="/css/index.css"/>'>
-    <script src=<c:url value="/js/jquery.min.js"/>></script>
+  
+  <script src=<c:url value="/js/jquery.min.js"/>></script>
   <script src=<c:url value="/js/bootstrap.js"/>></script>
-
-
 
   <script type="text/javascript" src="https://api.bkwinners.kr/js/clientside.js"></script>
   <script>
    window.focus();
    </script>
 
-  <title>Creditop</title>
+  <title>CREDITOP</title>
 </head>
 
 </head>
 <body class="c3-body">
 	<form id="form1">
-
 		<input type="hidden" id="sms_trackId" name="trackId" value="${trackId }"/>
 		<input type="hidden" id="sms_payKey" name="payKey" value="${mcht.payKey }"/>
 		<input type="hidden" id="sms_payInfo" name="payInfo" value="${payInfo }"/>
-    <input type="hidden" id="sms_tip" name="tip" value="${tip }"/>
-    <input type="hidden" id="sms_roundingAmount" name="roundingAmount" value="${roundingAmount }"/>
+    	<input type="hidden" id="sms_tip" name="tip" value="${tip }"/>
+    	<input type="hidden" id="sms_roundingAmount" name="roundingAmount" value="${roundingAmount }"/>
 		<input type="hidden" id="sms_mchtName" name="mchtName" value="${mcht.name }"/>
 		<input type="hidden" id="sms_products" name="products" value="${mcht.products }"/>
 		<input type="hidden" id="sms_amount" name="amount" value="${mcht.amount }"/>
@@ -51,24 +52,21 @@
 		<input type="hidden" id="sms_payerTel" name="payerTel" value="${mcht.payerTel }"/>
 		<input type="hidden" id="sms_smsKey" name="smsKey" value="${mcht.smsKey }"/>
 		<input type="hidden" id="sms_apiMaxInstall" name="apiMaxInstall" value="${apiMaxInstall }"/>
-    <input type="hidden" id="sms_semiAuth" name="semiAuth" value="${semiAuth }"/>
-    <input type="hidden" id="sms_installment" name="installment"/>
-    <input type="hidden" id="sms_trxId" name="trxId"/>
-    <input type="hidden" id="sms_cardNumber" name="cardNumber"/>
-    <input type="hidden" id="sms_expiry" name="expiry"/>
-    <input type="hidden" id="sms_cardAuth" name="cardAuth"/>
-    <input type="hidden" id="sms_authPw" name="authPw"/>
-    <input type="hidden" id="sms_authDob" name="authDob"/>
-
+    	<input type="hidden" id="sms_semiAuth" name="semiAuth" value="${semiAuth }"/>
+    	<input type="hidden" id="sms_installment" name="installment"/>
+	    <input type="hidden" id="sms_trxId" name="trxId"/>
+	    <input type="hidden" id="sms_cardNumber" name="cardNumber"/>
+	    <input type="hidden" id="sms_expiry" name="expiry"/>
+	    <input type="hidden" id="sms_cardAuth" name="cardAuth"/>
+	    <input type="hidden" id="sms_authPw" name="authPw"/>
+	    <input type="hidden" id="sms_authDob" name="authDob"/>
 	</form>
-
-
 
 
   <div class="c3-header">
     <span id="c3-btn-close" aria-label="Close"></span>
     <div class="c3-logo">
-      <img id="c3-logo-img" src="/img/good_caddie.png">
+      <img id="c3-logo-img" src="/img/logo.png">
     </div>
   </div>
   <div class="c3-content">
@@ -173,14 +171,14 @@
   </div>
 
   <div class="sweet-alert showSweetAlert" id="c3-alert" style="display: none;">
-    <!-- 실패 아이콘 -->
+<!--     실패 아이콘 -->
     <div class="sa-icon sa-error animateErrorIcon" id="c3-alert-error" style="display: none;">
       <span class="sa-x-mark">
         <span class="sa-line sa-left"></span>
         <span class="sa-line sa-right"></span>
       </span>
     </div>
-    <!-- 성공 아이콘 -->
+<!--     성공 아이콘 -->
     <div class="sa-icon sa-success animate" id="c3-alert-success" style="display: none;">
       <span class="sa-line sa-tip animateSuccessTip"></span>
       <span class="sa-line sa-long animateSuccessLong"></span>
@@ -228,31 +226,26 @@
   </div>
 
 
+<!--  	 <div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"> -->
+<!-- 		<div style="display: table-cell; vertical-align: middle; text-align: center;"> -->
+<!-- 			<div style="display: inline-block; font-size: 5rem; padding: 5%;" class="bg-info"> -->
+<!-- 				결제화면이 보이지 않으면<br> <strong>팝업해제 후 새로고침</strong> 하세요. -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
-
-
-
-
-
-	
-	<!-- <div style="display: table; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-		<div style="display: table-cell; vertical-align: middle; text-align: center;">
-			<div style="display: inline-block; font-size: 5rem; padding: 5%;" class="bg-info">
-				결제화면이 보이지 않으면<br> <strong>팝업해제 후 새로고침</strong> 하세요.
-			</div>
-		</div>
-	</div>
 	<script>
-		$(window).load(function() {
-			fn_pay();
-		});
+// 		$(window).load(function() {
+// 			fn_pay();
+// 		});
 		
-	function eventFnc(data) {
-		console.log(data);
-	}
+// 	function eventFnc(data) {
+// 		console.log(data);
+// 	}
 	
 	function fn_pay(){	
-		KWON.pay({
+		console.log('fn_pay() 실행');
+		MARU.pay({
 	        amount: $('#amount').val(),
 	        publicKey: $('#payKey').val(),
 	        products:JSON.parse($('#products').val()), // Array
@@ -262,13 +255,13 @@
 	        payerTel: $('#payerTel').val(),
 	        widgetLogoUrl: '',
 	        udf1: $('#smsKey').val(),
-	        //webhookUrl: 'http://pgwas2:10009/sms/smsPayWebHook',
-			webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
+ 	    	webhookUrl: 'http://10.100.200.10:10009/sms/smsPayWebHook',
+// 			webhookUrl: 'http://192.168.0.53:10034/sms/smsPayWebHook',
 	        redirectUrl: $('#baseUrl').val()+'/sms/smsPayComplete',
 	        mode: 'popup'
 		});
 	}
-	</script> -->
+	</script>
 		
 </body>
 
