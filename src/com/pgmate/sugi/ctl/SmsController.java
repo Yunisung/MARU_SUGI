@@ -249,7 +249,9 @@ public class SmsController {
 	        try { // Get HTTPS URL connection
 	        	logger.info("========== sendPaymentApi ===========  : 1");
 	            URL url = new URL(urlString);
+	            logger.info("========== sendPaymentApi ===========  : url " +url);
 	            httpsConn = (HttpsURLConnection) url.openConnection();
+	            logger.info("========== sendPaymentApi ===========  : httpsConn " +httpsConn);
 	           
 	            
 	            // Set Hostname verification 
@@ -325,7 +327,7 @@ public class SmsController {
 	        	 e.printStackTrace();
 	        } catch (	                IOException e) {
 	        	 e.printStackTrace();
-	        } catch (	                Exception e) {
+	        } catch (	                Throwable e) {
 	        	 e.printStackTrace();
 	        } finally {
 	            if (reader != null) {
