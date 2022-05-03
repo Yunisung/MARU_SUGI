@@ -330,6 +330,7 @@ var MARU = (function(win, doc) {
             util.postAjax('/sms/pay', $("#form1").serialize(), function(res) {
 //            util.postAjax('/api/pay', $("#form1").serialize(), function(res) {
               MARUResult = res;
+              console.log(res);
               if (res.result.resultCd == '0000') {
                 paySuccess(res.pay);
               } else {
