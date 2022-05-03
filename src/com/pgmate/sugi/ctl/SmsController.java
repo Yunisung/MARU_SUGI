@@ -131,7 +131,7 @@ public class SmsController {
 	
 	@RequestMapping(value="/sms/pay", method = RequestMethod.POST, consumes = {"application/x-www-form-urlencoded"})
 	public @ResponseBody Object smsPay(HttpServletRequest request) {
-		
+		logger.info("========== /sms/pay START ===========  : ");
 		String payKey = request.getParameter("payKey");
 		String smsKey = request.getParameter("smsKey");
 		String trackId = getTrackId();
@@ -147,8 +147,12 @@ public class SmsController {
 		String cardAuth = request.getParameter("cardAuth");
 		String authPw = request.getParameter("authPw");
 		String authDob = request.getParameter("authDob");
+		
+		logger.info("========== /sms/pay 2 ===========  : ");
+		
 
 		DirectPaymentRequest DPrequest = new DirectPaymentRequest();
+		logger.info("========== /sms/pay 3 ===========  : ");
 		DPrequest.pay.put("payRoute", "ONTR");
 		DPrequest.pay.put("trxType", "ONTR");
 		DPrequest.pay.put("trackId", trackId);
@@ -159,6 +163,7 @@ public class SmsController {
 		DPrequest.pay.put("udf1", "");
 		DPrequest.pay.put("udf2", "");
 		
+		logger.info("========== /sms/pay 4 ===========  : ");
 	    ArrayList<Object> products = new ArrayList<>();
         HashMap<String, Object> dataMap = new HashMap<>();
         dataMap.put("name", "");
@@ -168,6 +173,7 @@ public class SmsController {
         products.add(dataMap);
         DPrequest.pay.put("products", products);
 		
+        logger.info("========== /sms/pay 5 ===========  : ");
         final HashMap<String, Object> cardMap = new HashMap<>();
         cardMap.put("number", cardNumber);
         cardMap.put("expiry", expiry);
@@ -176,15 +182,18 @@ public class SmsController {
 
         HashMap<String, Object> metadata = new HashMap<>();
         if(!CommonUtil.isNullOrSpace(cardAuth) && cardAuth.equals("true")) {
+        	logger.info("========== /sms/pay 6 ===========  : ");
         	metadata.put("cardAuth", cardAuth);
         	metadata.put("authPw", authPw);
         	metadata.put("authDob", authDob);
 		}
 
+        logger.info("========== /sms/pay 7 ===========  : ");
         DPrequest.pay.put("metadata", metadata);
         
         //API SEND
 		DirectPaymentResponse DPresponse = sendPaymentApi("/api/pay", DPrequest, payKey);
+		logger.info("========== /sms/pay 8 ===========  : ");
 		
         HashMap<String, Object> map = new HashMap<>();
 		
@@ -222,10 +231,13 @@ public class SmsController {
 	}
 	
 	private DirectPaymentResponse sendPaymentApi(String sendurl, DirectPaymentRequest request, String payKey) {
-		DirectPaymentResponse response = null;
+		logger.info("========== sendPaymentApi ===========  : ");
 		
+		DirectPaymentResponse response = null;
+	
 		 //String urlString = UNIT.API_SERVER_URL +"/api/pay";
 		String urlString = BASE_URL + sendurl; 
+		logger.info("[ API URL = " +urlString +" ]");
 		logger.info("sugi request url : "+ urlString);
 		 
 	        String line = null;
@@ -278,10 +290,7 @@ public class SmsController {
                 wr.flush();
                 wr.close();
 	            
-	            
-
 	            int responseCode = httpsConn.getResponseCode();
-	            
 	       
 	            // Print response from host 
 	            if (responseCode == HttpsURLConnection.HTTP_OK) {
@@ -298,7 +307,8 @@ public class SmsController {
 	            while ((line = reader.readLine()) != null) {
 	                sb.append(line);
 	            }
-	           
+	            
+	            
 	            logger.info("sugi response : "+ GsonUtil.toPrettyFormat(sb.toString()));
 	            response = (DirectPaymentResponse) GsonUtil.fromJson(sb.toString(), DirectPaymentResponse.class);
 	          
