@@ -232,26 +232,26 @@ public class SmsController {
 
 	        InputStream in = null;
 	        BufferedReader reader = null;
-	        HttpURLConnection httpsConn = null;
-	        //HttpsURLConnection httpsConn = null;
+	        //HttpURLConnection httpsConn = null;
+	        HttpsURLConnection httpsConn = null;
 	        try { // Get HTTPS URL connection
 	            URL url = new URL(urlString);
-	            httpsConn = (HttpURLConnection) url.openConnection();
+	            httpsConn = (HttpsURLConnection) url.openConnection();
 	           
 	            
 	            // Set Hostname verification 
-//	            httpsConn = (HttpsURLConnection) url.openConnection();
-//	            httpsConn.setHostnameVerifier(new HostnameVerifier() {
-//					@Override
-//					public boolean verify(String hostname, SSLSession session) {
-//						return true;
-//					}
-//	            });
-//	           
-//	            //SSL setting 
-//	            SSLContext context = SSLContext.getInstance("TLS"); 
-//	            context.init(null, null, null); 
-//	            httpsConn.setSSLSocketFactory(context.getSocketFactory());
+	            httpsConn = (HttpsURLConnection) url.openConnection();
+	            httpsConn.setHostnameVerifier(new HostnameVerifier() {
+					@Override
+					public boolean verify(String hostname, SSLSession session) {
+						return true;
+					}
+	            });
+	           
+	            //SSL setting 
+	            SSLContext context = SSLContext.getInstance("TLS"); 
+	            context.init(null, null, null); 
+	            httpsConn.setSSLSocketFactory(context.getSocketFactory());
 	            
 	            // Input setting 
 	            httpsConn.setDoInput(true);
