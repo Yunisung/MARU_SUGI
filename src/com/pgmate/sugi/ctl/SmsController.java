@@ -1,14 +1,10 @@
 package com.pgmate.sugi.ctl;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -17,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -34,19 +29,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 import com.pgmate.sugi.bean.DirectPaymentRequest;
 import com.pgmate.sugi.bean.DirectPaymentResponse;
 import com.pgmate.sugi.bean.Request;
 import com.pgmate.sugi.dao.SmsDAO;
-import com.pgmate.sugi.util.FirebaseUtil;
-import com.pgmate.sugi.util.UNIT;
 import com.pgmate.lib.util.db.DBFactory;
 import com.pgmate.lib.util.db.DBManager;
 import com.pgmate.lib.util.gson.GsonUtil;
@@ -62,7 +49,7 @@ import com.pgmate.lib.util.map.SharedMap;
 public class SmsController {
 	
 	private static Logger logger = LoggerFactory.getLogger( com.pgmate.sugi.ctl.SmsController.class );
-	private static final String BASE_URL = "10.100.100.10:10002";
+	private static final String BASE_URL = "https://10.100.100.10:10002";
 	
 	@RequestMapping(value="/sms/{smsKey}/pay")
 	public ModelAndView smsPay(HttpServletRequest request ,@PathVariable("smsKey") String smsKey) {
