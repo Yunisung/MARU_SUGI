@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -231,31 +232,29 @@ public class SmsController {
 
 	        InputStream in = null;
 	        BufferedReader reader = null;
-	        //HttpURLConnection httpsConn = null;
-	        HttpsURLConnection httpsConn = null;
+	        HttpURLConnection httpsConn = null;
+	        //HttpsURLConnection httpsConn = null;
 	        try { // Get HTTPS URL connection
 	        	logger.info("========== sendPaymentApi ===========  : 1");
 	            URL url = new URL(urlString);
 	            logger.info("========== sendPaymentApi ===========  : url " +url);
-	            httpsConn = (HttpsURLConnection) url.openConnection();
+	            httpsConn = (HttpURLConnection) url.openConnection();
 	            logger.info("========== sendPaymentApi ===========  : httpsConn " +httpsConn);
 	           
 	            
 	            // Set Hostname verification 
-	            logger.info("========== sendPaymentApi ===========  : 2");
-	            httpsConn = (HttpsURLConnection) url.openConnection();
-	            httpsConn.setHostnameVerifier(new HostnameVerifier() {
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return true;
-					}
-	            });
-	           
-	            logger.info("========== sendPaymentApi ===========  : 3");
+//	            httpsConn = (HttpsURLConnection) url.openConnection();
+//	            httpsConn.setHostnameVerifier(new HostnameVerifier() {
+//					@Override
+//					public boolean verify(String hostname, SSLSession session) {
+//						return true;
+//					}
+//	            });
+
 	            //SSL setting 
-	            SSLContext context = SSLContext.getInstance("TLS"); 
-	            context.init(null, null, null); 
-	            httpsConn.setSSLSocketFactory(context.getSocketFactory());
+//	            SSLContext context = SSLContext.getInstance("TLS"); 
+//	            context.init(null, null, null); 
+//	            httpsConn.setSSLSocketFactory(context.getSocketFactory());
 	            
 	            logger.info("========== sendPaymentApi ===========  : 4");
 	            // Input setting 
