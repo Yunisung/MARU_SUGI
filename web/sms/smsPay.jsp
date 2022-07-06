@@ -51,7 +51,7 @@
 		<input type="hidden" id="sms_payerEmail" name="payerEmail" value="${mcht.payerEmail }"/>
 		<input type="hidden" id="sms_payerTel" name="payerTel" value="${mcht.payerTel }"/>
 		<input type="hidden" id="sms_smsKey" name="smsKey" value="${mcht.smsKey }"/>
-		<input type="hidden" id="sms_apiMaxInstall" name="apiMaxInstall" value="${apiMaxInstall }"/>
+		<input type="hidden" id="sms_apiMaxInstall" name="apiMaxInstall" value="${mcht.apiMaxInstall }"/>
     	<input type="hidden" id="sms_semiAuth" name="semiAuth" value="${semiAuth }"/>
     	<input type="hidden" id="sms_installment" name="installment"/>
 	    <input type="hidden" id="sms_trxId" name="trxId"/>
@@ -262,18 +262,6 @@
 		});
 	}
 	
-	$(document).ready(function() {
-		/* 할부 옵션 추가 */
-        for (i = 0; i <= $("#sms_apiMaxInstall").val(); i++) {
-            if (i == 1) continue;
-            if (i > 1 && $("#sms_amount").val() < 50000) break;
-            
-            var opt = document.createElement('option');
-            opt.value = i;
-            opt.innerText = i == 0 ? '일시불' : i + ' 개월';
-            document.getElementById('installment').appendChild(opt);
-        }
-	});
 	</script>
 		
 </body>
