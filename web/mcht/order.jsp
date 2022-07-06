@@ -8,7 +8,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Creditop</title>
+		<title>CREDITOP</title>
 		<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"/>'>
 		<link rel="stylesheet" href='<c:url value="/css/layout.css"/>'>
 		<script src='<c:url value="/js/jquery.min.js"/>'></script>
@@ -216,7 +216,7 @@
 				<button class="btn btn-sm btn-primary" style="margin-top:10px;" onclick='javascript:fn_logout();'>로그아웃</button>
 			</span>
 			</div>
-			<h2 class="text-center">${CP_SESSION.mchtName }&nbsp;수기결제</h2>
+			<h3 class="text-center">${CP_SESSION.mchtName }&nbsp;수기결제</h3>
 			
 			<form id="form1" class="form-horizontal" autocomplete="off">
 				<input type="hidden" id="payKey" name="payKey" value="${CP_SESSION.payKey }"/>

@@ -1,4 +1,4 @@
-console.log('IMPORT INDEX.JS FILE!');
+console.log('[SUGI]IMPORT INDEX.JS FILE!');
 var MARU = (function(win, doc) {
     var processing = false;
     var MARUConfig = {};
