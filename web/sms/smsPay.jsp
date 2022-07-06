@@ -264,5 +264,5 @@
 	</script>
 		
 </body>
-<script src="/js/index.js?v=1" charset="utf-8"></script>
+<script src=<c:url value="/js/index.js?v=1"/>></script>
 </html>
