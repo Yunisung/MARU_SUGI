@@ -273,7 +273,7 @@
             opt.innerText = i == 0 ? '일시불' : i + ' 개월';
             document.getElementById('installment').appendChild(opt);
         }
-	}
+	});
 	</script>
 		
 </body>
