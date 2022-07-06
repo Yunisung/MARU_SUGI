@@ -29,7 +29,7 @@ body {
 	border-radius: 30px;
 	background: #fff;
 	width: 1200px;
-	height: 585px;
+	height: 100%;
 	background:#d7daeb url(../img/login_bg.png) no-repeat left bottom;
 	position: relative;
 	box-shadow:  18px 18px 20px #eff1fb, -1px -1px 1px #ffffff;
