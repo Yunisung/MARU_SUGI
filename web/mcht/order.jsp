@@ -33,8 +33,10 @@
 					$('#smsBtn').show();			    
 			    
 			   }else {
-				   $('#smsBtn').hide();
+				    $('#smsBtn').hide();
 			   }
+			   
+			   $('#smsBtn').show();
 			});		
 			
 			$.fn.serializeObject = function(){
@@ -216,7 +218,7 @@
 				<button class="btn btn-sm btn-primary" style="margin-top:10px;" onclick='javascript:fn_logout();'>로그아웃</button>
 			</span>
 			</div>
-			<h2 class="text-center">${CP_SESSION.mchtName }&nbsp;수기결제</h2>
+			<h3 class="text-center">${CP_SESSION.mchtName }&nbsp;수기결제</h3>
 			
 			<form id="form1" class="form-horizontal" autocomplete="off">
 				<input type="hidden" id="payKey" name="payKey" value="${CP_SESSION.payKey }"/>
