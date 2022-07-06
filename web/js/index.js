@@ -202,6 +202,8 @@ var MARU = (function(win, doc) {
             document.getElementById('expiry-year').appendChild(opt);
         }
         /* 할부 옵션 추가 */
+		console.log('할부세팅', $("#sms_apiMaxInstall").val());
+		
         for (i = 0; i <= $("#sms_apiMaxInstall").val(); i++) {
             if (i == 1) continue;
             if (i > 1 && $("#sms_amount").val() < 50000) break;

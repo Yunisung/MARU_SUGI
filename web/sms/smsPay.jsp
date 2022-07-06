@@ -261,7 +261,24 @@
 	        mode: 'popup'
 		});
 	}
+	
+	$(document).ready(function() {
+		console.log('할부세팅', $("#sms_apiMaxInstall").val());
+		
+        for (i = 0; i <= $("#sms_apiMaxInstall").val(); i++) {
+            if (i == 1) continue;
+            if (i > 1 && $("#sms_amount").val() < 50000) break;
+            
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.innerText = i == 0 ? '일시불' : i + ' 개월';
+            document.getElementById('installment').appendChild(opt);
+        }
+	});
+	
 	</script>
+	
+	
 		
 </body>
 <script src=<c:url value="/js/index.js?v=1"/>></script>
