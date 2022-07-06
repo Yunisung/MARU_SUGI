@@ -61,6 +61,11 @@ public class SmsController {
 		if(smsPay != null){
 			if("N".equals(smsPay.getString("status"))){
 				smsPay.put("payerTel", smsDAO.getAESDec(smsPay.getString("payerTel")));
+				
+				String payKey = smsPay.getString("payKey");
+				SharedMap<String, Object> maxInstall = smsDAO.getMaxInstall(payKey);
+				
+				smsPay.put("apiMaxInstall", maxInstall.getString("apiMaxInstall"));
 				request.setAttribute("mcht", smsPay);
 				return new ModelAndView("/sms/smsPay");
 			}else{
