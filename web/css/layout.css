@@ -41,7 +41,7 @@ body {
 }
 .login .form {
 	width: 600px;
-	height: 100%;
+	height: 585%;
 	float:right;
 	background: #fff;
 	padding: 90px;
@@ -172,7 +172,7 @@ button.logout:focus, .btn.logout:active.focus {
 .login .form {
  width:60%;
 padding:60px 30px;
-height:500px;
+height:100%;
 }
 .order {
  width:90%;
