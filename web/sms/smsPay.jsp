@@ -261,6 +261,19 @@
 	        mode: 'popup'
 		});
 	}
+	
+	$(document).ready(function() {
+		/* 할부 옵션 추가 */
+        for (i = 0; i <= $("#sms_apiMaxInstall").val(); i++) {
+            if (i == 1) continue;
+            if (i > 1 && $("#sms_amount").val() < 50000) break;
+            
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.innerText = i == 0 ? '일시불' : i + ' 개월';
+            document.getElementById('installment').appendChild(opt);
+        }
+	
 	</script>
 		
 </body>
