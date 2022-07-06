@@ -494,8 +494,9 @@ var MARU = (function(win, doc) {
         MARUConfig.udf2 = $("#sms_udf2").val();
         MARUConfig.products = $("#sms_products").val();
 
-        
-        setForm();
+        console.log('TOKEN RESULT  ', MARUConfig);
+
+        setForm(MARUConfig);
         document.getElementById('card').focus();
         setTimeout(function() {
             fadeOutEffect('c3-loading');
