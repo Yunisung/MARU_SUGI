@@ -114,18 +114,6 @@
               <span class="c3-installment-tag c3-tag">할부</span>
               <span class="c3-installment">
                 <select class="c3-select" name="installment" id="installment" tabindex="4">
-	                <option value="00" selected="selected">일시불</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
                 </select>
               </span>
           </div>
@@ -276,6 +264,5 @@
 	</script>
 		
 </body>
-
-<script src=<c:url value="/js/index.js?v=1"/>></script>
+<script src="/js/index.js?v=1" charset="utf-8"></script>
 </html>
