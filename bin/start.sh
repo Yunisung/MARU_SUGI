@@ -1,5 +1,4 @@
 #!/bin/sh
-./stop.sh
 
 # JVM_ARGS for VM
 ##########################
