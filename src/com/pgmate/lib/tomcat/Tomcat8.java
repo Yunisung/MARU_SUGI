@@ -161,7 +161,7 @@ public class Tomcat8 {
 		createFile();
 	}
 	
-	private createFile() {
+	private void createFile() {
 		
 		String txt = "테스트입니다!!" ;
 		
