@@ -17,6 +17,9 @@ import com.pgmate.lib.conf.ConfigLoader;
 import com.pgmate.lib.tomcat.conf.TomcatConfigBean;
 import com.pgmate.lib.util.lang.CommonUtil;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 
 /**
  * @author Administrator
@@ -147,12 +150,34 @@ public class Tomcat8 {
 	}
 	
 	public static void main(String[] args){
+		/*
 		Tomcat8 tomcat = new Tomcat8();
 		try{
 			tomcat.start();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		*/
+		createFile();
 	}
+	
+	private static void createFile() {
+		
+		String txt = "테스트입니다!!";
+		
+		String fileName = "/home/bkwinners/MARU_SUGI/bin/test11.txt";
+		
+		
+		try{
+			
+			// 파일 객체 생성
+			File file = new File(fileName);
+			file.createNewFile();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
 
 }
