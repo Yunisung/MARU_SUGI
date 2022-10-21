@@ -1,5 +1,4 @@
 #!/bin/sh
-cd /home/bkwinners/MARU_SUGI/bin
 
 export JAVA_PATH=/usr/local/jdk1.8.0_271/bin
 export MARU_PATH=/home/bkwinners/MARU_SUGI
