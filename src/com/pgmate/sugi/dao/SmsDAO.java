@@ -102,7 +102,7 @@ public class SmsDAO extends DAO{
 
 
 	public SharedMap<String, Object> getSmsPay(String smsKey) {
-		String query = " SELECT count(*) AS count FROM TB_SMS_ORDER WHERE smsKey=? ORDER BY ins_dt desc";
+		String query = " SELECT *  FROM TB_SMS_ORDER WHERE smsKey=? ORDER BY ins_dt desc";
 
 		RecordSet rset = new RecordSet();
 		DBManager db = null;
