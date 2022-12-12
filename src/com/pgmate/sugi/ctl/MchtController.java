@@ -85,7 +85,9 @@ public class MchtController {
 		}while(count > 0);
 		
 		smsPayMap.put("smsKey", smsKey);
-		
+
+		logger.info("smskey : [{}]", smsKey);
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		if(smsDAO.insertSMSPay(smsPayMap)) {
 			map.put("result", "Y");
