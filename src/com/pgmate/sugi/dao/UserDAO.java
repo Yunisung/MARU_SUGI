@@ -28,7 +28,7 @@ public class UserDAO extends DAO{
 
 	public RecordSet getTmnLogin(String tmnId, String serial) {
 		String query = " SELECT A.*, B.name AS mchtName, B.nick AS mchtNick FROM PG_MCHT_TMN A LEFT JOIN PG_MCHT B ON A.mchtId = B.mchtId" +
-				"WHERE A.tmnId=? AND A.serial=? AND A.webPay='사용' AND A.status='사용' AND B.status='사용'";
+				" WHERE A.tmnId=? AND A.serial=? AND A.webPay='사용' AND A.status='사용' AND B.status='사용'";
 
 		RecordSet rset = new RecordSet();
 		DBManager db = null;
@@ -59,7 +59,7 @@ public class UserDAO extends DAO{
 
 	public RecordSet getTmn(String tmnId) {
 		String query = " SELECT A.*, B.name AS mchtName, B.nick AS mchtNick FROM PG_MCHT_TMN A LEFT JOIN PG_MCHT B ON A.mchtId = B.mchtId" +
-				"WHERE A.tmnId=? AND A.webPay='사용' AND A.status='사용' AND B.status='사용'";
+				" WHERE A.tmnId=? AND A.webPay='사용' AND A.status='사용' AND B.status='사용'";
 
 		RecordSet rset = new RecordSet();
 		DBManager db = null;
