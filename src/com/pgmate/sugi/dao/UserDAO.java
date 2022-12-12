@@ -1,10 +1,17 @@
 package com.pgmate.sugi.dao;
 
+import com.pgmate.lib.util.db.DBFactory;
+import com.pgmate.lib.util.db.DBManager;
+import com.pgmate.sugi.util.SQLInjectionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pgmate.lib.dao.DAO;
 import com.pgmate.lib.dao.RecordSet;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * @author Administrator
@@ -20,46 +27,121 @@ public class UserDAO extends DAO{
 	
 
 	public RecordSet getTmnLogin(String tmnId, String serial) {
-		this.setTable("PG_MCHT_TMN A LEFT JOIN PG_MCHT B ON  A.mchtId = B.mchtId");
-		this.setColumns("A.*, B.name AS mchtName, B.nick AS mchtNick");
-		this.addWhere("A.tmnId",tmnId,eq);
-		this.addWhere("A.serial",serial,eq);
-		this.addWhere("A.webPay","사용",eq);
-		this.addWhere("A.status","사용",eq);
-		this.addWhere("B.status","사용",eq);
-		RecordSet rset = search();
-		this.initRecord();
+		String query = " SELECT A.*, B.name AS mchtName, B.nick AS mchtNick FROM PG_MCHT_TMN A LEFT JOIN PG_MCHT B ON A.mchtId = B.mchtId" +
+				"WHERE A.tmnId=? AND A.serial=? AND A.webPay='사용' AND A.status='사용' AND B.status='사용'";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, SQLInjectionUtil.changeValue(tmnId));
+			pstmt.setString(2, SQLInjectionUtil.changeValue(serial));
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
 		return rset;
 	}
 
 	public RecordSet getTmn(String tmnId) {
-		this.setDebug(true);
-		this.setTable("PG_MCHT_TMN A LEFT JOIN PG_MCHT B ON  A.mchtId = B.mchtId");
-		this.setColumns("A.*, B.name AS mchtName, B.nick AS mchtNick");
-		this.addWhere("A.tmnId",tmnId,eq);
-		this.addWhere("A.webPay","사용",eq);
-		this.addWhere("A.status","사용",eq);
-		this.addWhere("B.status","사용",eq);
-		RecordSet rset = search();
-		this.initRecord();
+		String query = " SELECT A.*, B.name AS mchtName, B.nick AS mchtNick FROM PG_MCHT_TMN A LEFT JOIN PG_MCHT B ON A.mchtId = B.mchtId" +
+				"WHERE A.tmnId=? AND A.webPay='사용' AND A.status='사용' AND B.status='사용'";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, SQLInjectionUtil.changeValue(tmnId));
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
 		return rset;
 	}
 	
 	public RecordSet getTmnDtl(String tmnId) {
-		this.setTable("PG_MCHT_TMN_DTL");
-		this.setColumns("*");
-		this.addWhere("tmnId",tmnId,eq);
-		RecordSet rset = search();
-		this.initRecord();
+		String query = " SELECT * FROM PG_MCHT_TMN_DTL WHERE tmnId=?";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,  SQLInjectionUtil.changeValue(tmnId));
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
 		return rset;
 	}
 	
 	public RecordSet getSettleAccnt(String tmnId) {
-		this.setTable("PG_MCHT_TMN A LEFT JOIN PG_MCHT_TAX B ON A.taxId = B.taxId");
-		this.setColumns("B.*");
-		this.addWhere("A.tmnId",tmnId,eq);
-		RecordSet rset = search();
-		this.initRecord();
+		String query = " SELECT B.* FROM PG_MCHT_TMN A LEFT JOIN PG_MCHT_TAX B ON A.taxId = B.taxId WHERE A.tmnId=?";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,  SQLInjectionUtil.changeValue(tmnId));
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
 		return rset;
 	}
 	
