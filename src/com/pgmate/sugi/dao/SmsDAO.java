@@ -1,7 +1,13 @@
 package com.pgmate.sugi.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
+import com.pgmate.lib.util.db.DBFactory;
+import com.pgmate.lib.util.db.DBManager;
+import com.pgmate.sugi.util.SQLInjectionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,40 +31,135 @@ public class SmsDAO extends DAO{
 	
 
 	public int checkSmsKey(String smsKey) {
-		this.setTable("TB_SMS_ORDER");
-		this.setColumns("count(*) AS count");
-		this.addWhere("smsKey", smsKey, eq);
-		this.setOrderBy("ins_dt desc");
-		RecordSet rset = this.search();
-		this.initRecord();
+		String query = " SELECT count(*) AS count FROM TB_SMS_ORDER WHERE smsKey=? ORDER BY ins_dt desc";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,  SQLInjectionUtil.changeValue(smsKey));
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
 		return rset.getInt("count");
 	}
 
 
 	public boolean insertSMSPay(SharedMap<String, Object> smsPayMap) {
-		super.setTable("TB_SMS_ORDER");
-		
-		super.setRecord("smsKey", smsPayMap.getString("smsKey"));
-		super.setRecord("payKey", smsPayMap.getString("payKey"));
-		super.setRecord("name", smsPayMap.getString("name"));
-		super.setRecord("payerName", smsPayMap.getString("payerName"));
-		super.setRecord("payerTel", smsPayMap.getString("payerTel"));
-		super.setRecord("payerEmail", smsPayMap.getString("payerEmail"));
-		super.setRecord("products", smsPayMap.getString("products"));
-		super.setRecord("amount", smsPayMap.getString("amount"));
-		boolean result =  super.insert();
-		super.initRecord();
-		return result;
+		String query = " INSERT INTO TB_SMS_ORDER (smskey, paykey, name, payerName, payerTel, payerEmail, products, amount) " +
+				"VALUES (?,?,?,?,?,?,?,?)";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,  SQLInjectionUtil.changeValue(smsPayMap.getString("smsKey")));
+			pstmt.setString(2,  SQLInjectionUtil.changeValue(smsPayMap.getString("payKey")));
+			pstmt.setString(3,  SQLInjectionUtil.changeValue(smsPayMap.getString("name")));
+			pstmt.setString(4,  SQLInjectionUtil.changeValue(smsPayMap.getString("payerName")));
+			pstmt.setString(5,  SQLInjectionUtil.changeValue(smsPayMap.getString("payerTel")));
+			pstmt.setString(6,  SQLInjectionUtil.changeValue(smsPayMap.getString("payerEmail")));
+			pstmt.setString(7,  SQLInjectionUtil.changeValue(smsPayMap.getString("products")));
+			pstmt.setString(8,  SQLInjectionUtil.changeValue(smsPayMap.getString("amount")));
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
+		if(rset.size() > 0)
+			return true;
+		else
+			return false;
 	}
 
 
 	public SharedMap<String, Object> getSmsPay(String smsKey) {
-		this.setTable("TB_SMS_ORDER");
-		this.setColumns("*");
-		this.addWhere("smsKey",smsKey,eq);
-		this.setOrderBy("ins_dt desc");
-		RecordSet rset = search();
-		this.initRecord();
+		String query = " SELECT count(*) AS count FROM TB_SMS_ORDER WHERE smsKey=? ORDER BY ins_dt desc";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,  SQLInjectionUtil.changeValue(smsKey));
+
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
+		return rset.getRowFirst();
+
+	}
+	
+	public SharedMap<String, Object> getMaxInstall(String payKey) {
+		String query = " SELECT apiMaxInstall AS count FROM PG_MCHT_TMN WHERE payKey=? ";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,  SQLInjectionUtil.changeValue(payKey));
+
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
+
 		return rset.getRowFirst();
 	}
 	
@@ -72,24 +173,68 @@ public class SmsDAO extends DAO{
 	}
 
 	public SharedMap<String, Object> getSmsBill(String smsKey) {
-		this.setTable("VW_TRX_PAY A RIGHT OUTER JOIN TB_SMS_ORDER B ON A.trxId = B.trxId");
-		this.setColumns("A.trxId, A.regDay, A. regTime, A.amount, A.bin, A.last4, A.issuer, A.status, A.authCd");
-		this.addWhere("B.smsKey",smsKey,eq);
-		this.setOrderBy("ins_dt desc");
-		RecordSet rset = search();
-		this.initRecord();
+		String query = " SELECT A.trxId, A.regDay, A. regTime, A.amount, A.bin, A.last4, A.issuer, A.status, A.authCd "
+		+ "FROM VW_TRX_PAY A RIGHT OUTER JOIN TB_SMS_ORDER B ON A.trxId = B.TrxId WHERE B.smsKey=? ORDER BY ins_dt desc";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,  SQLInjectionUtil.changeValue(smsKey));
+
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
+
 		return rset.getRowFirst();
 	}
 
 	public boolean smsPayComplete(String trxId, String smsKey) {
-		this.setTable("TB_SMS_ORDER");
-		this.setRecord("status"	, "Y");
-		this.setRecord("trxId"	, trxId);
-		this.addWhere("smsKey", smsKey);
-		this.setOrderBy("ins_dt desc");
-		boolean result = this.update();
-		this.initRecord();
-		return result;
+		String query = " UPDATE TB_SMS_ORDER SET status='Y', trxId=? WHERE smsKey=? ORDER BY ins_dt desc ";
+
+		RecordSet rset = new RecordSet();
+		DBManager db = null;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet resultSet = null;
+
+		try {
+			db = DBFactory.getInstance();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,  SQLInjectionUtil.changeValue(trxId));
+			pstmt.setString(2,  SQLInjectionUtil.changeValue(smsKey));
+			pstmt.executeQuery();
+			resultSet = pstmt.getResultSet();
+
+			if(resultSet != null) {
+				rset = new RecordSet(resultSet);
+			}
+		} catch (Exception e) {
+			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
+		} finally {
+			db.close(conn, pstmt, resultSet);
+		}
+
+		if(rset.size() > 0)
+			return true;
+		else
+			return false;
 	}
 	
 }
