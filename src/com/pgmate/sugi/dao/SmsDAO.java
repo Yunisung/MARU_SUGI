@@ -69,7 +69,6 @@ public class SmsDAO extends DAO{
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 		ResultSet resultSet = null;
-		boolean checker = false;
 
 		try {
 			db = DBFactory.getInstance();
@@ -88,16 +87,17 @@ public class SmsDAO extends DAO{
 
 			if(resultSet != null) {
 				rset = new RecordSet(resultSet);
-				checker = true;
 			}
 		} catch (Exception e) {
 			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
-			checker = false;
 		} finally {
 			db.close(conn, pstmt, resultSet);
 		}
 
-		return checker;
+		if(rset != null)
+			return true;
+		else
+			return false;
 
 	}
 
@@ -213,7 +213,6 @@ public class SmsDAO extends DAO{
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 		ResultSet resultSet = null;
-		boolean checker = false;
 
 		try {
 			db = DBFactory.getInstance();
@@ -226,16 +225,14 @@ public class SmsDAO extends DAO{
 
 			if(resultSet != null) {
 				rset = new RecordSet(resultSet);
-				checker = true;
 			}
 		} catch (Exception e) {
 			logger.debug("sql error : {}, query : {}", e.getMessage(), query);
-			checker = false;
 		} finally {
 			db.close(conn, pstmt, resultSet);
 		}
 
-		if(rset.size() > 0)
+		if(rset != null)
 			return true;
 		else
 			return false;
