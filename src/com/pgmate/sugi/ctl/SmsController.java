@@ -21,6 +21,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.servlet.http.HttpServletRequest;
 
+import com.pgmate.sugi.util.SQLInjectionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -146,9 +147,9 @@ public class SmsController {
 		DPrequest.pay.put("trxType", "ONTR");
 		DPrequest.pay.put("trackId", trackId);
 		DPrequest.pay.put("amount", amount);
-		DPrequest.pay.put("payerName", payerName);
-		DPrequest.pay.put("payerEmail", payerEmail);
-		DPrequest.pay.put("payerTel", payerTel);
+		DPrequest.pay.put("payerName", SQLInjectionUtil.xssChange(payerName));
+		DPrequest.pay.put("payerEmail", SQLInjectionUtil.xssChange(payerEmail));
+		DPrequest.pay.put("payerTel", SQLInjectionUtil.xssChange(payerTel));
 		DPrequest.pay.put("udf1", "");
 		DPrequest.pay.put("udf2", "");
 		
