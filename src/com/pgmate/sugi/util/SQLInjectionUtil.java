@@ -53,18 +53,18 @@ public class SQLInjectionUtil {
 	
 	public static String xssChange(String orgVal) {
 		// 특수문자 필터링을 위해 특수문자를 정의
-		Pattern evilChars = Pattern.compile("[’‘\\`]");
+		Pattern evilChars = Pattern.compile("[’‘`]");
 		// 특수문자는 모드 공백으로 치환
 		orgVal = evilChars.matcher(orgVal).replaceAll("");
 		
 		// 특수 문자 필터링
-//		orgVal = orgVal.replaceAll("'", "&#39;");
-//		orgVal = orgVal.replaceAll("\"", "&#34;");
+		orgVal = orgVal.replaceAll("'", "&#39;");
+		orgVal = orgVal.replaceAll("\"", "&#34;");
 		// orgVal = orgVal.replaceAll("-", "&#45;");
 		// orgVal = orgVal.replaceAll("(", "&#40;");
 		// orgVal = orgVal.replaceAll(")", "&#41;");
 		orgVal = orgVal.replaceAll("<", "&#60;");
-//		orgVal = orgVal.replaceAll("=", "&#61;");
+		orgVal = orgVal.replaceAll("=", "&#61;");
 		orgVal = orgVal.replaceAll(">", "&#62;");
 		//orgVal = orgVal.replaceAll("@", "&#64;");
 
