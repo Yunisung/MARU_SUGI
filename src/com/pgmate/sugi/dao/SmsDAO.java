@@ -163,15 +163,6 @@ public class SmsDAO extends DAO{
 
 		return rset.getRowFirst();
 	}
-	
-	public SharedMap<String, Object> getMaxInstall(String payKey) {
-		this.setTable("PG_MCHT_TMN");
-		this.setColumns("apiMaxInstall");
-		this.addWhere("payKey", payKey, eq);
-		RecordSet rset = search();
-		this.initRecord();
-		return rset.getRowFirst();
-	}
 
 	public SharedMap<String, Object> getSmsBill(String smsKey) {
 		String query = " SELECT A.trxId, A.regDay, A. regTime, A.amount, A.bin, A.last4, A.issuer, A.status, A.authCd "
