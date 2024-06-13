@@ -14,7 +14,7 @@
 		<script src='<c:url value="/js/jquery.min.js"/>'></script>
 		<script src='<c:url value="/js/bootstrap.js"/>'></script>
 		<script src='<c:url value="/js/bootbox.min.js"/>'></script>
-		<script type="text/javascript" src="https://api.bkwinners.kr/js/clientside.js"></script>
+		<script type="text/javascript" src="https://devapi.bkwinners.kr/js/clientsideV2.js"></script>
 		<style>
 			input[type="number"]::-webkit-outer-spin-button, 
 			input[type="number"]::-webkit-inner-spin-button {
