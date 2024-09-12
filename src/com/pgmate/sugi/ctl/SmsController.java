@@ -142,7 +142,7 @@ public class SmsController {
 		DPrequest.pay.put("payRoute", "ONTR");
 		DPrequest.pay.put("trxType", "ONTR");
 		DPrequest.pay.put("trackId", trackId);
-		DPrequest.pay.put("amount", amount);
+		DPrequest.pay.put("amount", Integer.valueOf(amount));
 		DPrequest.pay.put("payerName", SQLInjectionUtil.xssChange(payerName));
 		DPrequest.pay.put("payerEmail", SQLInjectionUtil.xssChange(payerEmail));
 		DPrequest.pay.put("payerTel", SQLInjectionUtil.xssChange(payerTel));
@@ -154,7 +154,7 @@ public class SmsController {
 		dataMap.put("prodId", "");
         dataMap.put("name", "테스트");
         dataMap.put("qty", 1);
-        dataMap.put("price", amount);
+        dataMap.put("price", Integer.valueOf(amount));
         dataMap.put("desc", "");
         products.add(dataMap);
         DPrequest.pay.put("products", products);
