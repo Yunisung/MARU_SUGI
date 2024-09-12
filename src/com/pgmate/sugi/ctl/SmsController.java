@@ -1,10 +1,6 @@
 package com.pgmate.sugi.ctl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -155,7 +151,7 @@ public class SmsController {
 		
 	    ArrayList<Object> products = new ArrayList<>();
         HashMap<String, Object> dataMap = new HashMap<>();
-        dataMap.put("name", "");
+        dataMap.put("name", "SMS결제");
         dataMap.put("qty", 1);
         dataMap.put("price", amount);
         dataMap.put("desc", "");
@@ -228,26 +224,29 @@ public class SmsController {
 	        InputStream in = null;
 	        BufferedReader reader = null;
 //	        HttpsURLConnection httpsConn = null;
-	        HttpsURLConnection httpsConn = null;
-	        try { // Get HTTPS URL connection
+	        HttpURLConnection httpsConn = null;
+			System.setProperty("https.protocols", "TLSv1.2");
+
+			try { // Get HTTPS URL connection
 	            URL url = new URL(urlString);
 	            logger.info("========== sendPaymentApi ===========  : url " +url);
-	            httpsConn = (HttpsURLConnection) url.openConnection();
+				logger.info("payKey : {}", payKey);
+	            httpsConn = (HttpURLConnection) url.openConnection();
 	           
 	            
 	            // Set Hostname verification 
-	            httpsConn = (HttpsURLConnection) url.openConnection();
-	            httpsConn.setHostnameVerifier(new HostnameVerifier() {
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return true;
-					}
-	            });
+//	            httpsConn = (HttpsURLConnection) url.openConnection();
+//	            httpsConn.setHostnameVerifier(new HostnameVerifier() {
+//					@Override
+//					public boolean verify(String hostname, SSLSession session) {
+//						return true;
+//					}
+//	            });
 
 	            //SSL setting 
-	            SSLContext context = SSLContext.getInstance("TLS");
-	            context.init(null, null, null);
-	            httpsConn.setSSLSocketFactory(context.getSocketFactory());
+//	            SSLContext context = SSLContext.getInstance("TLS");
+//	            context.init(null, null, null);
+//	            httpsConn.setSSLSocketFactory(context.getSocketFactory());
 	            
 	            // Input setting 
 	            httpsConn.setDoInput(true);
@@ -256,7 +255,7 @@ public class SmsController {
 	            // Caches setting 
 	            httpsConn.setUseCaches(false);
 	            // Read Timeout Setting 
-	            httpsConn.setReadTimeout(10000);
+	            httpsConn.setReadTimeout(60000);
 	            // Connection Timeout setting 
 	            httpsConn.setConnectTimeout(10000);
 	            // Method Setting(GET/POST) 
@@ -265,14 +264,20 @@ public class SmsController {
 	            // Header Setting 
 	            httpsConn.setRequestProperty("Authorization", payKey);
 	            httpsConn.setRequestProperty("content-type", "application/json");
+				httpsConn.setRequestProperty("Connection", "close");
 
 	            String requestString = GsonUtil.toJson(request);
 	            logger.info("sugi request : "+ GsonUtil.toPrettyFormat(requestString));
 	            //write
-	            OutputStreamWriter wr = new OutputStreamWriter(httpsConn.getOutputStream());
-                wr.write(requestString);
-                wr.flush();
-                wr.close();
+//	            OutputStreamWriter wr = new OutputStreamWriter(httpsConn.getOutputStream());
+//                wr.write(requestString);
+//                wr.flush();
+//                wr.close();
+
+				OutputStream os = httpsConn.getOutputStream();
+				os.write(requestString.getBytes("utf-8"));
+				os.flush();
+				os.close();
 	            
 	            int responseCode = httpsConn.getResponseCode();
 	       
