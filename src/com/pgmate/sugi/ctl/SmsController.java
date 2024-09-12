@@ -151,7 +151,8 @@ public class SmsController {
 		
 	    ArrayList<Object> products = new ArrayList<>();
         HashMap<String, Object> dataMap = new HashMap<>();
-        dataMap.put("name", "SMS결제");
+		dataMap.put("prodId", "");
+        dataMap.put("name", "테스트");
         dataMap.put("qty", 1);
         dataMap.put("price", amount);
         dataMap.put("desc", "");
@@ -227,11 +228,15 @@ public class SmsController {
 	        HttpURLConnection httpsConn = null;
 			System.setProperty("https.protocols", "TLSv1.2");
 
+			long time = System.currentTimeMillis();
+
 			try { // Get HTTPS URL connection
 	            URL url = new URL(urlString);
-	            logger.info("========== sendPaymentApi ===========  : url " +url);
-				logger.info("payKey : {}", payKey);
+
 	            httpsConn = (HttpURLConnection) url.openConnection();
+
+				logger.info("========== sendPaymentApi ===========  : url " +url);
+				logger.info("payKey : {}", payKey);
 	           
 	            
 	            // Set Hostname verification 
@@ -280,6 +285,8 @@ public class SmsController {
 				os.close();
 	            
 	            int responseCode = httpsConn.getResponseCode();
+
+				logger.info("responseCode : {}", responseCode);
 	       
 	            // Print response from host 
 	            if (responseCode == HttpsURLConnection.HTTP_OK) {
@@ -311,6 +318,7 @@ public class SmsController {
 	        } catch (	                Throwable e) {
 	        	 e.printStackTrace();
 	        } finally {
+				logger.info("ElapsedTime : {}", (long)(System.currentTimeMillis()-time)+"msec");
 	            if (reader != null) {
 	                try {
 						reader.close();
