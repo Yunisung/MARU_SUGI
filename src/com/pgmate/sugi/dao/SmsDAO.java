@@ -134,7 +134,7 @@ public class SmsDAO extends DAO{
 	}
 	
 	public SharedMap<String, Object> getMaxInstall(String payKey) {
-		String query = " SELECT apiMaxInstall AS count FROM PG_MCHT_TMN WHERE payKey=? ";
+		String query = " SELECT * FROM PG_MCHT_TMN WHERE payKey=? ";
 
 		RecordSet rset = new RecordSet();
 		DBManager db = null;
