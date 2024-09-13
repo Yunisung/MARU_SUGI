@@ -71,9 +71,17 @@ public class SmsController {
 		
 		SharedMap<String, Object> smsPay = smsDAO.getSmsPay(smsKey);
 		request.setAttribute("baseUrl", "https://devapi.bkwinners.kr");
+
 		if(smsPay != null){
 			if("N".equals(smsPay.getString("status"))){
 				smsPay.put("payerTel", smsDAO.getAESDec(smsPay.getString("payerTel")));
+
+				String payKey = smsPay.getString("payKey");
+				SharedMap<String, Object> maxInstall = smsDAO.getMaxInstall(payKey);
+
+				logger.info("maxInstall : {}", maxInstall.getString("apiMaxInstall"));
+
+				smsPay.put("apiMaxInstall", maxInstall.getString("apiMaxInstall"));
 				request.setAttribute("mcht", smsPay);
 				return new ModelAndView("/sms/smsPay");
 			}else{
@@ -83,7 +91,6 @@ public class SmsController {
 		} else {
 			return new ModelAndView("/sms/error");
 		}
-		
 	}
 
 	@RequestMapping(value="/sms/smsPayWebHook", method = RequestMethod.POST, consumes = {"application/x-www-form-urlencoded"})
