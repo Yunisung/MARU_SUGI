@@ -47,7 +47,7 @@ import com.pgmate.lib.util.map.SharedMap;
 public class SmsController {
 	
 	private static Logger logger = LoggerFactory.getLogger( com.pgmate.sugi.ctl.SmsController.class );
-	private static final String BASE_URL = "http://127.0.0.1:10002";
+	private static final String BASE_URL = "https://api.bkwinners.kr";
 	
 	@RequestMapping(value="/sms/{smsKey}/pay")
 	public ModelAndView smsPay(HttpServletRequest request ,@PathVariable("smsKey") String smsKey) {
