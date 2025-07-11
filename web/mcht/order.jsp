@@ -14,7 +14,7 @@
 		<script src='<c:url value="/js/jquery.min.js"/>'></script>
 		<script src='<c:url value="/js/bootstrap.js"/>'></script>
 		<script src='<c:url value="/js/bootbox.min.js"/>'></script>
-		<script type="text/javascript" src="https://devapi.bkwinners.kr/js/clientsideV2.js"></script>
+		<script type="text/javascript" src="https://devapi.ghpayments.kr/js/clientsideV2.js"></script>
 		<style>
 			input[type="number"]::-webkit-outer-spin-button, 
 			input[type="number"]::-webkit-inner-spin-button {
@@ -136,7 +136,7 @@
 			function fn_sendSms(smsKey){
 				var payerTel = $('#payerTel').val();
 				if(confirm(payerTel+"번호로 결제 URL을 전송하겠습니까?")){
-					var baseUrl = 'https://devsugi.bkwinners.kr/sms/';
+					var baseUrl = 'https://devsugi.ghpayments.kr/sms/';
 					var url = baseUrl+smsKey+'/pay';
 					var content = "상점명: ${TMNNAME }%0D%0A상품명: "+$('#name').val()+"%0D%0A결제금액: "+numberWithCommas($.trim($('#amount').val()))+"원%0D%0A아래 URL을 누르시면, 결제창으로 연결됩니다.%0D%0A"+url;
 					if(navigator.userAgent.match(/Android/i) != null){

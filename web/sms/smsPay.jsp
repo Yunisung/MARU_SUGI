@@ -28,7 +28,7 @@
   <script src=<c:url value="/js/jquery.min.js"/>></script>
   <script src=<c:url value="/js/bootstrap.js"/>></script>
 
-  <script type="text/javascript" src="https://devapi.bkwinners.kr/js/clientside.js"></script>
+  <script type="text/javascript" src="https://devapi.ghpayments.kr/js/clientside.js"></script>
   <script>
    window.focus();
    </script>
