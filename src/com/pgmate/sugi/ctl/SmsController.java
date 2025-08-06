@@ -47,14 +47,14 @@ import com.pgmate.lib.util.map.SharedMap;
 public class SmsController {
 	
 	private static Logger logger = LoggerFactory.getLogger( com.pgmate.sugi.ctl.SmsController.class );
-	private static final String BASE_URL = "https://api.ghpayments.kr";
+	private static final String BASE_URL = "http://10.100.100.12:10002";
 	
 	@RequestMapping(value="/sms/{smsKey}/pay")
 	public ModelAndView smsPay(HttpServletRequest request ,@PathVariable("smsKey") String smsKey) {
 		SmsDAO smsDAO = new SmsDAO();
 		
 		SharedMap<String, Object> smsPay = smsDAO.getSmsPay(smsKey);
-		request.setAttribute("baseUrl", BASE_URL);
+		request.setAttribute("baseUrl", "https://api.ghpayments.co.kr");
 		if(smsPay != null){
 			if("N".equals(smsPay.getString("status"))){
 				smsPay.put("payerTel", smsDAO.getAESDec(smsPay.getString("payerTel")));
